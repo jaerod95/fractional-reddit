@@ -28,7 +28,7 @@ struct PostsDataController: PostsDataControllerProtocol {
             .tryMap { listing in
                 listing.data.children.compactMap {
 
-                    if $0.data.url.range(of: "(.png|.jpg)$", options: .regularExpression) != nil {
+                    if $0.data.url.range(of: "(.png|.jpg|.gif)$", options: .regularExpression) != nil {
                         return $0.data
                     }
                     return nil
