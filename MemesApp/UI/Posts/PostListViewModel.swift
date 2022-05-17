@@ -11,7 +11,7 @@ import Combine
 
 protocol PostListViewModelProtocol: ObservableObject {
     var posts: [PostData] { get }
-    func fetchPosts()
+    func fetchPosts(replacing: Bool)
 }
 
 class PostListViewModel: ObservableObject, PostListViewModelProtocol {
@@ -24,8 +24,12 @@ class PostListViewModel: ObservableObject, PostListViewModelProtocol {
         fetchPosts()
     }
     
-    func fetchPosts() {
-        postsDataController.getPosts().sink { completion in
+    func fetchPosts(replacing: Bool = false) {
+        var after: String?
+        if !replacing {
+            after = self.posts.last?.id
+        }
+        postsDataController.getPosts(after: after, replacing: replacing).sink { completion in
             print(completion)
         } receiveValue: { posts in
             print(posts)

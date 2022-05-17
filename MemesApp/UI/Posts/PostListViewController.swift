@@ -42,7 +42,7 @@ class PostListViewController: UIViewController {
     
     @objc private func reloadComments() {
         self.refreshControl.beginRefreshing()
-        viewModel.fetchPosts()
+        viewModel.fetchPosts(replacing: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -10,7 +10,7 @@ import Combine
 import Alamofire
 
 protocol PostsDataControllerProtocol {
-    func getPosts() -> AnyPublisher<[PostData], Error>
+    func getPosts(after: String?, replacing: Bool) -> AnyPublisher<[PostData], Error>
     func getCommentsForPost(postID: String) -> AnyPublisher<[CommentData], Error>
 }
 
@@ -19,11 +19,13 @@ enum APIError: LocalizedError {
 }
 
 struct PostsDataController: PostsDataControllerProtocol {
-    func getPosts() -> AnyPublisher<[PostData], Error> {
-        guard let url: URL = URL(string: "https://www.reddit.com/r/memes.json") else {
+    func getPosts(after: String? = nil, replacing: Bool = false) -> AnyPublisher<[PostData], Error> {
+        var urlComponents = URLComponents(string: "https://www.reddit.com/r/memes.json")
+        urlComponents?.queryItems = [URLQueryItem(name: "after", value: after)]
+        
+        guard let url: URL = urlComponents?.url else {
             return Fail(error: APIError.invalidRequestError("Unable to parse URL")).eraseToAnyPublisher()
         }
-        
         return URLSession.shared.dataTaskPublisher(for: url)
             .map(\.data)
             .decode(type: Listing.self, decoder: JSONDecoder())
