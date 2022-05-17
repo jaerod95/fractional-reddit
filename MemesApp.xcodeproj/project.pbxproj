@@ -9,13 +9,22 @@
 /* Begin PBXBuildFile section */
 		924B473E2833E721009204E5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B473D2833E721009204E5 /* AppDelegate.swift */; };
 		924B47402833E721009204E5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B473F2833E721009204E5 /* SceneDelegate.swift */; };
-		924B47422833E721009204E5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B47412833E721009204E5 /* ViewController.swift */; };
+		924B47422833E721009204E5 /* PostListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B47412833E721009204E5 /* PostListViewController.swift */; };
 		924B47452833E721009204E5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 924B47432833E721009204E5 /* Main.storyboard */; };
 		924B47472833E722009204E5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 924B47462833E722009204E5 /* Assets.xcassets */; };
 		924B474A2833E722009204E5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 924B47482833E722009204E5 /* LaunchScreen.storyboard */; };
 		924B47552833E722009204E5 /* MemesAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B47542833E722009204E5 /* MemesAppTests.swift */; };
 		924B475F2833E722009204E5 /* MemesAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B475E2833E722009204E5 /* MemesAppUITests.swift */; };
 		924B47612833E722009204E5 /* MemesAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B47602833E722009204E5 /* MemesAppUITestsLaunchTests.swift */; };
+		924B476E2833E7BB009204E5 /* PostListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B476D2833E7BB009204E5 /* PostListViewModel.swift */; };
+		924B47712833EC15009204E5 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B47702833EC15009204E5 /* Post.swift */; };
+		924B47732833EC1E009204E5 /* Listing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B47722833EC1E009204E5 /* Listing.swift */; };
+		924B47752833EC48009204E5 /* PostsDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B47742833EC48009204E5 /* PostsDataController.swift */; };
+		924B47772833ECA6009204E5 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B47762833ECA6009204E5 /* PostTableViewCell.swift */; };
+		924B477B2833ED7A009204E5 /* UITableView+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B477A2833ED7A009204E5 /* UITableView+extensions.swift */; };
+		924B477D2833EF72009204E5 /* PostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 924B477C2833EF72009204E5 /* PostTableViewCell.xib */; };
+		924B47802833F0A7009204E5 /* SwiftyGif in Frameworks */ = {isa = PBXBuildFile; productRef = 924B477F2833F0A7009204E5 /* SwiftyGif */; };
+		924B47832833F2A5009204E5 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 924B47822833F2A5009204E5 /* Kingfisher */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +48,7 @@
 		924B473A2833E721009204E5 /* MemesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		924B473D2833E721009204E5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		924B473F2833E721009204E5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		924B47412833E721009204E5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		924B47412833E721009204E5 /* PostListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListViewController.swift; sourceTree = "<group>"; };
 		924B47442833E721009204E5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		924B47462833E722009204E5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		924B47492833E722009204E5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +58,13 @@
 		924B475A2833E722009204E5 /* MemesAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MemesAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		924B475E2833E722009204E5 /* MemesAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemesAppUITests.swift; sourceTree = "<group>"; };
 		924B47602833E722009204E5 /* MemesAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemesAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		924B476D2833E7BB009204E5 /* PostListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListViewModel.swift; sourceTree = "<group>"; };
+		924B47702833EC15009204E5 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		924B47722833EC1E009204E5 /* Listing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Listing.swift; sourceTree = "<group>"; };
+		924B47742833EC48009204E5 /* PostsDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsDataController.swift; sourceTree = "<group>"; };
+		924B47762833ECA6009204E5 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
+		924B477A2833ED7A009204E5 /* UITableView+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+extensions.swift"; sourceTree = "<group>"; };
+		924B477C2833EF72009204E5 /* PostTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +72,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				924B47832833F2A5009204E5 /* Kingfisher in Frameworks */,
+				924B47802833F0A7009204E5 /* SwiftyGif in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,9 +117,15 @@
 		924B473C2833E721009204E5 /* MemesApp */ = {
 			isa = PBXGroup;
 			children = (
+				924B47792833ED5C009204E5 /* Extensions */,
+				924B476F2833EBE2009204E5 /* Models */,
 				924B473D2833E721009204E5 /* AppDelegate.swift */,
 				924B473F2833E721009204E5 /* SceneDelegate.swift */,
-				924B47412833E721009204E5 /* ViewController.swift */,
+				924B47412833E721009204E5 /* PostListViewController.swift */,
+				924B47742833EC48009204E5 /* PostsDataController.swift */,
+				924B476D2833E7BB009204E5 /* PostListViewModel.swift */,
+				924B47762833ECA6009204E5 /* PostTableViewCell.swift */,
+				924B477C2833EF72009204E5 /* PostTableViewCell.xib */,
 				924B47432833E721009204E5 /* Main.storyboard */,
 				924B47462833E722009204E5 /* Assets.xcassets */,
 				924B47482833E722009204E5 /* LaunchScreen.storyboard */,
@@ -127,6 +151,23 @@
 			path = MemesAppUITests;
 			sourceTree = "<group>";
 		};
+		924B476F2833EBE2009204E5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				924B47722833EC1E009204E5 /* Listing.swift */,
+				924B47702833EC15009204E5 /* Post.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		924B47792833ED5C009204E5 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				924B477A2833ED7A009204E5 /* UITableView+extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -143,6 +184,10 @@
 			dependencies = (
 			);
 			name = MemesApp;
+			packageProductDependencies = (
+				924B477F2833F0A7009204E5 /* SwiftyGif */,
+				924B47822833F2A5009204E5 /* Kingfisher */,
+			);
 			productName = MemesApp;
 			productReference = 924B473A2833E721009204E5 /* MemesApp.app */;
 			productType = "com.apple.product-type.application";
@@ -215,6 +260,10 @@
 				Base,
 			);
 			mainGroup = 924B47312833E721009204E5;
+			packageReferences = (
+				924B477E2833F0A7009204E5 /* XCRemoteSwiftPackageReference "SwiftyGif" */,
+				924B47812833F2A5009204E5 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			productRefGroup = 924B473B2833E721009204E5 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -234,6 +283,7 @@
 				924B474A2833E722009204E5 /* LaunchScreen.storyboard in Resources */,
 				924B47472833E722009204E5 /* Assets.xcassets in Resources */,
 				924B47452833E721009204E5 /* Main.storyboard in Resources */,
+				924B477D2833EF72009204E5 /* PostTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,9 +308,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				924B47422833E721009204E5 /* ViewController.swift in Sources */,
+				924B476E2833E7BB009204E5 /* PostListViewModel.swift in Sources */,
+				924B47422833E721009204E5 /* PostListViewController.swift in Sources */,
 				924B473E2833E721009204E5 /* AppDelegate.swift in Sources */,
+				924B47772833ECA6009204E5 /* PostTableViewCell.swift in Sources */,
 				924B47402833E721009204E5 /* SceneDelegate.swift in Sources */,
+				924B47732833EC1E009204E5 /* Listing.swift in Sources */,
+				924B47712833EC15009204E5 /* Post.swift in Sources */,
+				924B477B2833ED7A009204E5 /* UITableView+extensions.swift in Sources */,
+				924B47752833EC48009204E5 /* PostsDataController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -602,6 +658,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		924B477E2833F0A7009204E5 /* XCRemoteSwiftPackageReference "SwiftyGif" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kirualex/SwiftyGif.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		924B47812833F2A5009204E5 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		924B477F2833F0A7009204E5 /* SwiftyGif */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 924B477E2833F0A7009204E5 /* XCRemoteSwiftPackageReference "SwiftyGif" */;
+			productName = SwiftyGif;
+		};
+		924B47822833F2A5009204E5 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 924B47812833F2A5009204E5 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 924B47322833E721009204E5 /* Project object */;
 }
