@@ -17,6 +17,7 @@ class PostListViewModel: ObservableObject, PostListViewModelProtocol {
     private var cancellables: Set<AnyCancellable> = Set()
     private var postsDataController: PostsDataControllerProtocol = PostsDataController()
     @Published var posts: [PostData] = []
+    var presentedViewController: UIViewController?
     
     init() {
         postsDataController.getPosts().sink { completion in

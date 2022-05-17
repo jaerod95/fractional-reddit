@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9247418A28342E880076BE60 /* Haptic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9247418928342E880076BE60 /* Haptic.swift */; };
+		9247418C283431010076BE60 /* Comments.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9247418B283431010076BE60 /* Comments.storyboard */; };
 		924B473E2833E721009204E5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B473D2833E721009204E5 /* AppDelegate.swift */; };
 		924B47402833E721009204E5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B473F2833E721009204E5 /* SceneDelegate.swift */; };
 		924B47422833E721009204E5 /* PostListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B47412833E721009204E5 /* PostListViewController.swift */; };
@@ -23,7 +25,6 @@
 		924B47772833ECA6009204E5 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B47762833ECA6009204E5 /* PostTableViewCell.swift */; };
 		924B477B2833ED7A009204E5 /* UITableView+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B477A2833ED7A009204E5 /* UITableView+extensions.swift */; };
 		924B477D2833EF72009204E5 /* PostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 924B477C2833EF72009204E5 /* PostTableViewCell.xib */; };
-		924B47802833F0A7009204E5 /* SwiftyGif in Frameworks */ = {isa = PBXBuildFile; productRef = 924B477F2833F0A7009204E5 /* SwiftyGif */; };
 		924B47832833F2A5009204E5 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 924B47822833F2A5009204E5 /* Kingfisher */; };
 		924B478628340285009204E5 /* PullUpController in Frameworks */ = {isa = PBXBuildFile; productRef = 924B478528340285009204E5 /* PullUpController */; };
 		92F2388D283404920063909E /* CommentsPullupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F2388C283404920063909E /* CommentsPullupViewController.swift */; };
@@ -50,6 +51,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9247418928342E880076BE60 /* Haptic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Haptic.swift; sourceTree = "<group>"; };
+		9247418B283431010076BE60 /* Comments.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Comments.storyboard; sourceTree = "<group>"; };
 		924B473A2833E721009204E5 /* MemesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		924B473D2833E721009204E5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		924B473F2833E721009204E5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -82,7 +85,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				924B47832833F2A5009204E5 /* Kingfisher in Frameworks */,
-				924B47802833F0A7009204E5 /* SwiftyGif in Frameworks */,
 				924B478628340285009204E5 /* PullUpController in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -104,6 +106,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		92474184283425CE0076BE60 /* Posts */ = {
+			isa = PBXGroup;
+			children = (
+				924B47412833E721009204E5 /* PostListViewController.swift */,
+				924B476D2833E7BB009204E5 /* PostListViewModel.swift */,
+				924B47762833ECA6009204E5 /* PostTableViewCell.swift */,
+				924B477C2833EF72009204E5 /* PostTableViewCell.xib */,
+				924B47432833E721009204E5 /* Main.storyboard */,
+			);
+			path = Posts;
+			sourceTree = "<group>";
+		};
+		92474185283425DC0076BE60 /* Comments */ = {
+			isa = PBXGroup;
+			children = (
+				9247418B283431010076BE60 /* Comments.storyboard */,
+			);
+			path = Comments;
+			sourceTree = "<group>";
+		};
+		9247418628342D4A0076BE60 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				9247418928342E880076BE60 /* Haptic.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
 		924B47312833E721009204E5 = {
 			isa = PBXGroup;
 			children = (
@@ -177,15 +207,13 @@
 		924B47872834046B009204E5 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				924B47412833E721009204E5 /* PostListViewController.swift */,
-				924B476D2833E7BB009204E5 /* PostListViewModel.swift */,
+				9247418628342D4A0076BE60 /* Shared */,
+				92474185283425DC0076BE60 /* Comments */,
+				92474184283425CE0076BE60 /* Posts */,
 				92F2388C283404920063909E /* CommentsPullupViewController.swift */,
 				92F2388E283405490063909E /* PostCommentsViewModel.swift */,
-				924B47762833ECA6009204E5 /* PostTableViewCell.swift */,
 				92F238902834057F0063909E /* PostCommentTableViewCell.swift */,
 				92F23892283405880063909E /* PostCommentTableViewCell.xib */,
-				924B477C2833EF72009204E5 /* PostTableViewCell.xib */,
-				924B47432833E721009204E5 /* Main.storyboard */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -207,7 +235,6 @@
 			);
 			name = MemesApp;
 			packageProductDependencies = (
-				924B477F2833F0A7009204E5 /* SwiftyGif */,
 				924B47822833F2A5009204E5 /* Kingfisher */,
 				924B478528340285009204E5 /* PullUpController */,
 			);
@@ -284,7 +311,6 @@
 			);
 			mainGroup = 924B47312833E721009204E5;
 			packageReferences = (
-				924B477E2833F0A7009204E5 /* XCRemoteSwiftPackageReference "SwiftyGif" */,
 				924B47812833F2A5009204E5 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				924B478428340285009204E5 /* XCRemoteSwiftPackageReference "PullUpController" */,
 			);
@@ -304,6 +330,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9247418C283431010076BE60 /* Comments.storyboard in Resources */,
 				924B474A2833E722009204E5 /* LaunchScreen.storyboard in Resources */,
 				92F23893283405880063909E /* PostCommentTableViewCell.xib in Resources */,
 				924B47472833E722009204E5 /* Assets.xcassets in Resources */,
@@ -339,6 +366,7 @@
 				924B47772833ECA6009204E5 /* PostTableViewCell.swift in Sources */,
 				924B47402833E721009204E5 /* SceneDelegate.swift in Sources */,
 				924B47732833EC1E009204E5 /* Listing.swift in Sources */,
+				9247418A28342E880076BE60 /* Haptic.swift in Sources */,
 				924B47712833EC15009204E5 /* Post.swift in Sources */,
 				92F2388F283405490063909E /* PostCommentsViewModel.swift in Sources */,
 				924B477B2833ED7A009204E5 /* UITableView+extensions.swift in Sources */,
@@ -688,14 +716,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		924B477E2833F0A7009204E5 /* XCRemoteSwiftPackageReference "SwiftyGif" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/kirualex/SwiftyGif.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
-			};
-		};
 		924B47812833F2A5009204E5 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
@@ -715,11 +735,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		924B477F2833F0A7009204E5 /* SwiftyGif */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 924B477E2833F0A7009204E5 /* XCRemoteSwiftPackageReference "SwiftyGif" */;
-			productName = SwiftyGif;
-		};
 		924B47822833F2A5009204E5 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 924B47812833F2A5009204E5 /* XCRemoteSwiftPackageReference "Kingfisher" */;

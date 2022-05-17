@@ -1,46 +1,29 @@
-////
-////  PostCommentTableViewCell.swift
-////  MemesApp
-////
-////  Created by Jason Rodriguez on 5/17/22.
-////
 //
-//import Foundation
-//import UIKit
+//  PostCommentTableViewCell.swift
+//  MemesApp
 //
-//class PostCommentTableViewCell: UITableViewCell {
-//    @IBOutlet private var authorImage: UIImageView!
-//    @IBOutlet private var authorUsername: UILabel!
-//    @IBOutlet private var comment: UILabel!
-//    @IBOutlet private var authorImage: UIImageView!
-//    @IBOutlet private var upvote: UIButton!
-//    @IBOutlet private var comments: UIButton!
-//    @IBOutlet private var share: UIButton!
-//    
-//    private var actionsDelegate: PostActionsDelegate?
-//    private var post: PostData?
-//    
-//    
-//    override func prepareForReuse() {
-//        super.prepareForReuse()
-//        self.postImage.image = nil
-//    }
-//    
-//    func configure(post: PostData, actionsDelegate: PostActionsDelegate) {
-//        self.actionsDelegate = actionsDelegate
-//        self.post = post
-//        guard let url: URL = URL(string: post.url) else {
-//            return
-//        }
-//        if post.url.hasSuffix(".gif") {
-//            let loader = UIActivityIndicatorView(style: .white)
-//            postImage.setGifFromURL(url, customLoader: loader)
-//        } else {
-//            postImage.kf.setImage(with: url)
-//        }
-//        self.titleLabel.text = post.author
-//        self.captionLabel.text = post.title
-//        self.comments.addTarget(self, action: #selector(commentsPressed), for: .touchUpInside)
-//        self.backgroundColor = .black
-//    }
-//}
+//  Created by Jason Rodriguez on 5/17/22.
+//
+
+import Foundation
+import UIKit
+import Kingfisher
+
+class PostCommentTableViewCell: UITableViewCell {
+    @IBOutlet private var authorImage: UIImageView!
+    @IBOutlet private var authorUsername: UILabel!
+    @IBOutlet private var comment: UILabel!
+    
+    private var actionsDelegate: PostActionsDelegate?
+    private var post: PostData?
+    
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+    }
+    
+    func configure() {
+        self.authorImage.layer.cornerRadius = 16
+        self.authorImage.kf.setImage(with: URL(string: "https://static.vecteezy.com/system/resources/thumbnails/003/337/584/small/default-avatar-photo-placeholder-profile-icon-vector.jpg"))
+    }
+}

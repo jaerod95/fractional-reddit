@@ -18,16 +18,29 @@ class PostListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(UINib(nibName: "PostTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: PostTableViewCell.identifier)
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
-        self.tableView.allowsSelection = false
+        configureTableView()
         self.viewModel.$posts
             .receive(on: DispatchQueue.main)
             .sink { posts in
             self.tableView.reloadData()
         }.store(in: &cancellables)
-        
+    }
+    
+    private func configureTableView() {
+        self.tableView.register(UINib(nibName: "PostTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: PostTableViewCell.identifier)
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        self.tableView.contentInsetAdjustmentBehavior = .never
+        self.tableView.backgroundColor = .black
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setNeedsStatusBarAppearanceUpdate()
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        .lightContent
     }
     
     func reloadTableView() {
@@ -40,6 +53,12 @@ class PostListViewController: UIViewController {
 extension PostListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return self.tableView.frame.size.height
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let vc = self.viewModel.presentedViewController as? PullUpController {
+            self.removePullUpController(vc, animated: true, completion: nil)
+        }
     }
 }
 
@@ -76,9 +95,20 @@ extension PostListViewController: UIScrollViewDelegate {
 }
 
 extension PostListViewController: PostActionsDelegate {
+    func upvotePressed(post: PostData) {
+        print(post)
+    }
+    
+    func sharePressed(post: PostData) {
+        print(post)
+    }
+    
     func commentsPressed(post: PostData) {
-        
-//        self.addPullUpController(CommentsPullupController(), initialStickyPointOffset: tableView.frame.height / 2, animated: true)
+        print(post)
+        let commentsViewController = UIStoryboard(name: "Comments", bundle: nil).instantiateInitialViewController() as? PostCommentsViewController ?? PostCommentsViewController()
+        commentsViewController.viewModel.postId = post.id
+        self.viewModel.presentedViewController = commentsViewController
+        self.addPullUpController(commentsViewController, initialStickyPointOffset: 500, animated: true)
     }
 }
 
