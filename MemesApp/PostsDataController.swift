@@ -40,21 +40,16 @@ struct PostsDataController: PostsDataControllerProtocol {
     
     func getCommentsForPost(postID: String) -> AnyPublisher<[PostData], Error> {
         print("https://www.reddit.com/r/memes/comments/\(postID)")
-        guard let url: URL = URL(string: "https://www.reddit.com/r/memes/comments/\(postID)") else {
+        guard let url: URL = URL(string: "https://www.reddit.com/r/memes/comments/\(postID).json") else {
             return Fail(error: APIError.invalidRequestError("Unable to parse URL")).eraseToAnyPublisher()
         }
         
         return URLSession.shared.dataTaskPublisher(for: url)
             .map(\.data)
-            .decode(type: Listing.self, decoder: JSONDecoder())
+            .decode(type: [Listing].self, decoder: JSONDecoder())
             .tryMap { listing in
-                listing.data.children.compactMap {
-                    
-                    if $0.data.url.range(of: "(.png|.jpg|.gif)$", options: .regularExpression) != nil {
-                        return $0.data
-                    }
-                    return nil
-                }
+                print(listing)
+                return []
             }
             .eraseToAnyPublisher()
     }
