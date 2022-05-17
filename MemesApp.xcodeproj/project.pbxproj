@@ -25,6 +25,11 @@
 		924B477D2833EF72009204E5 /* PostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 924B477C2833EF72009204E5 /* PostTableViewCell.xib */; };
 		924B47802833F0A7009204E5 /* SwiftyGif in Frameworks */ = {isa = PBXBuildFile; productRef = 924B477F2833F0A7009204E5 /* SwiftyGif */; };
 		924B47832833F2A5009204E5 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 924B47822833F2A5009204E5 /* Kingfisher */; };
+		924B478628340285009204E5 /* PullUpController in Frameworks */ = {isa = PBXBuildFile; productRef = 924B478528340285009204E5 /* PullUpController */; };
+		92F2388D283404920063909E /* CommentsPullupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F2388C283404920063909E /* CommentsPullupViewController.swift */; };
+		92F2388F283405490063909E /* PostCommentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F2388E283405490063909E /* PostCommentsViewModel.swift */; };
+		92F238912834057F0063909E /* PostCommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F238902834057F0063909E /* PostCommentTableViewCell.swift */; };
+		92F23893283405880063909E /* PostCommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92F23892283405880063909E /* PostCommentTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +70,10 @@
 		924B47762833ECA6009204E5 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		924B477A2833ED7A009204E5 /* UITableView+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+extensions.swift"; sourceTree = "<group>"; };
 		924B477C2833EF72009204E5 /* PostTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostTableViewCell.xib; sourceTree = "<group>"; };
+		92F2388C283404920063909E /* CommentsPullupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsPullupViewController.swift; sourceTree = "<group>"; };
+		92F2388E283405490063909E /* PostCommentsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCommentsViewModel.swift; sourceTree = "<group>"; };
+		92F238902834057F0063909E /* PostCommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCommentTableViewCell.swift; sourceTree = "<group>"; };
+		92F23892283405880063909E /* PostCommentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostCommentTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +83,7 @@
 			files = (
 				924B47832833F2A5009204E5 /* Kingfisher in Frameworks */,
 				924B47802833F0A7009204E5 /* SwiftyGif in Frameworks */,
+				924B478628340285009204E5 /* PullUpController in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -117,16 +127,12 @@
 		924B473C2833E721009204E5 /* MemesApp */ = {
 			isa = PBXGroup;
 			children = (
+				924B47872834046B009204E5 /* UI */,
 				924B47792833ED5C009204E5 /* Extensions */,
 				924B476F2833EBE2009204E5 /* Models */,
 				924B473D2833E721009204E5 /* AppDelegate.swift */,
 				924B473F2833E721009204E5 /* SceneDelegate.swift */,
-				924B47412833E721009204E5 /* PostListViewController.swift */,
 				924B47742833EC48009204E5 /* PostsDataController.swift */,
-				924B476D2833E7BB009204E5 /* PostListViewModel.swift */,
-				924B47762833ECA6009204E5 /* PostTableViewCell.swift */,
-				924B477C2833EF72009204E5 /* PostTableViewCell.xib */,
-				924B47432833E721009204E5 /* Main.storyboard */,
 				924B47462833E722009204E5 /* Assets.xcassets */,
 				924B47482833E722009204E5 /* LaunchScreen.storyboard */,
 				924B474B2833E722009204E5 /* Info.plist */,
@@ -168,6 +174,22 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		924B47872834046B009204E5 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				924B47412833E721009204E5 /* PostListViewController.swift */,
+				924B476D2833E7BB009204E5 /* PostListViewModel.swift */,
+				92F2388C283404920063909E /* CommentsPullupViewController.swift */,
+				92F2388E283405490063909E /* PostCommentsViewModel.swift */,
+				924B47762833ECA6009204E5 /* PostTableViewCell.swift */,
+				92F238902834057F0063909E /* PostCommentTableViewCell.swift */,
+				92F23892283405880063909E /* PostCommentTableViewCell.xib */,
+				924B477C2833EF72009204E5 /* PostTableViewCell.xib */,
+				924B47432833E721009204E5 /* Main.storyboard */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -187,6 +209,7 @@
 			packageProductDependencies = (
 				924B477F2833F0A7009204E5 /* SwiftyGif */,
 				924B47822833F2A5009204E5 /* Kingfisher */,
+				924B478528340285009204E5 /* PullUpController */,
 			);
 			productName = MemesApp;
 			productReference = 924B473A2833E721009204E5 /* MemesApp.app */;
@@ -263,6 +286,7 @@
 			packageReferences = (
 				924B477E2833F0A7009204E5 /* XCRemoteSwiftPackageReference "SwiftyGif" */,
 				924B47812833F2A5009204E5 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				924B478428340285009204E5 /* XCRemoteSwiftPackageReference "PullUpController" */,
 			);
 			productRefGroup = 924B473B2833E721009204E5 /* Products */;
 			projectDirPath = "";
@@ -281,6 +305,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				924B474A2833E722009204E5 /* LaunchScreen.storyboard in Resources */,
+				92F23893283405880063909E /* PostCommentTableViewCell.xib in Resources */,
 				924B47472833E722009204E5 /* Assets.xcassets in Resources */,
 				924B47452833E721009204E5 /* Main.storyboard in Resources */,
 				924B477D2833EF72009204E5 /* PostTableViewCell.xib in Resources */,
@@ -315,7 +340,10 @@
 				924B47402833E721009204E5 /* SceneDelegate.swift in Sources */,
 				924B47732833EC1E009204E5 /* Listing.swift in Sources */,
 				924B47712833EC15009204E5 /* Post.swift in Sources */,
+				92F2388F283405490063909E /* PostCommentsViewModel.swift in Sources */,
 				924B477B2833ED7A009204E5 /* UITableView+extensions.swift in Sources */,
+				92F238912834057F0063909E /* PostCommentTableViewCell.swift in Sources */,
+				92F2388D283404920063909E /* CommentsPullupViewController.swift in Sources */,
 				924B47752833EC48009204E5 /* PostsDataController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -676,6 +704,14 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		924B478428340285009204E5 /* XCRemoteSwiftPackageReference "PullUpController" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MarioIannotta/PullUpController";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.8.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -688,6 +724,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 924B47812833F2A5009204E5 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		924B478528340285009204E5 /* PullUpController */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 924B478428340285009204E5 /* XCRemoteSwiftPackageReference "PullUpController" */;
+			productName = PullUpController;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

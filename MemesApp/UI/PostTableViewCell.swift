@@ -17,8 +17,12 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet private var captionLabel: UILabel!
     @IBOutlet private var authorImage: UIImageView!
     @IBOutlet private var upvote: UIButton!
+    @IBOutlet private var upvoteLabel: UILabel!
     @IBOutlet private var comments: UIButton!
+    @IBOutlet private var commentsLabel: UILabel!
     @IBOutlet private var share: UIButton!
+    @IBOutlet private var shareLabel: UILabel!
+    
     
     private var actionsDelegate: PostActionsDelegate?
     private var post: PostData?
@@ -43,6 +47,8 @@ class PostTableViewCell: UITableViewCell {
         }
         self.titleLabel.text = post.author
         self.captionLabel.text = post.title
+        self.upvoteLabel.text = "\(post.ups)"
+        self.commentsLabel.text = "\(post.num_comments)"
         self.comments.addTarget(self, action: #selector(commentsPressed), for: .touchUpInside)
         self.backgroundColor = .black
     }

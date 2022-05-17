@@ -18,4 +18,5 @@ struct PostData: Codable, Identifiable {
     var author: String
     var title: String
     var ups: Int
+    var num_comments: Int
 }

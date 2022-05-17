@@ -7,6 +7,7 @@
 
 import UIKit
 import Combine
+import PullUpController
 
 class PostListViewController: UIViewController {
     
@@ -76,7 +77,8 @@ extension PostListViewController: UIScrollViewDelegate {
 
 extension PostListViewController: PostActionsDelegate {
     func commentsPressed(post: PostData) {
-        print(post)
+        
+//        self.addPullUpController(CommentsPullupController(), initialStickyPointOffset: tableView.frame.height / 2, animated: true)
     }
 }
 
