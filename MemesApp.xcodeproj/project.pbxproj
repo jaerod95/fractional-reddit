@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		9247418A28342E880076BE60 /* Haptic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9247418928342E880076BE60 /* Haptic.swift */; };
 		9247418C283431010076BE60 /* Comments.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9247418B283431010076BE60 /* Comments.storyboard */; };
+		9247418F2834413A0076BE60 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 9247418E2834413A0076BE60 /* Alamofire */; };
+		92474193283456900076BE60 /* UIView+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92474192283456900076BE60 /* UIView+extensions.swift */; };
 		924B473E2833E721009204E5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B473D2833E721009204E5 /* AppDelegate.swift */; };
 		924B47402833E721009204E5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B473F2833E721009204E5 /* SceneDelegate.swift */; };
 		924B47422833E721009204E5 /* PostListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B47412833E721009204E5 /* PostListViewController.swift */; };
@@ -53,6 +55,7 @@
 /* Begin PBXFileReference section */
 		9247418928342E880076BE60 /* Haptic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Haptic.swift; sourceTree = "<group>"; };
 		9247418B283431010076BE60 /* Comments.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Comments.storyboard; sourceTree = "<group>"; };
+		92474192283456900076BE60 /* UIView+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+extensions.swift"; sourceTree = "<group>"; };
 		924B473A2833E721009204E5 /* MemesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		924B473D2833E721009204E5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		924B473F2833E721009204E5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -84,6 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9247418F2834413A0076BE60 /* Alamofire in Frameworks */,
 				924B47832833F2A5009204E5 /* Kingfisher in Frameworks */,
 				924B478628340285009204E5 /* PullUpController in Frameworks */,
 			);
@@ -121,6 +125,10 @@
 		92474185283425DC0076BE60 /* Comments */ = {
 			isa = PBXGroup;
 			children = (
+				92F2388C283404920063909E /* CommentsPullupViewController.swift */,
+				92F2388E283405490063909E /* PostCommentsViewModel.swift */,
+				92F238902834057F0063909E /* PostCommentTableViewCell.swift */,
+				92F23892283405880063909E /* PostCommentTableViewCell.xib */,
 				9247418B283431010076BE60 /* Comments.storyboard */,
 			);
 			path = Comments;
@@ -200,6 +208,7 @@
 			isa = PBXGroup;
 			children = (
 				924B477A2833ED7A009204E5 /* UITableView+extensions.swift */,
+				92474192283456900076BE60 /* UIView+extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -210,10 +219,6 @@
 				9247418628342D4A0076BE60 /* Shared */,
 				92474185283425DC0076BE60 /* Comments */,
 				92474184283425CE0076BE60 /* Posts */,
-				92F2388C283404920063909E /* CommentsPullupViewController.swift */,
-				92F2388E283405490063909E /* PostCommentsViewModel.swift */,
-				92F238902834057F0063909E /* PostCommentTableViewCell.swift */,
-				92F23892283405880063909E /* PostCommentTableViewCell.xib */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -237,6 +242,7 @@
 			packageProductDependencies = (
 				924B47822833F2A5009204E5 /* Kingfisher */,
 				924B478528340285009204E5 /* PullUpController */,
+				9247418E2834413A0076BE60 /* Alamofire */,
 			);
 			productName = MemesApp;
 			productReference = 924B473A2833E721009204E5 /* MemesApp.app */;
@@ -313,6 +319,7 @@
 			packageReferences = (
 				924B47812833F2A5009204E5 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				924B478428340285009204E5 /* XCRemoteSwiftPackageReference "PullUpController" */,
+				9247418D2834413A0076BE60 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 924B473B2833E721009204E5 /* Products */;
 			projectDirPath = "";
@@ -360,6 +367,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92474193283456900076BE60 /* UIView+extensions.swift in Sources */,
 				924B476E2833E7BB009204E5 /* PostListViewModel.swift in Sources */,
 				924B47422833E721009204E5 /* PostListViewController.swift in Sources */,
 				924B473E2833E721009204E5 /* AppDelegate.swift in Sources */,
@@ -716,6 +724,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		9247418D2834413A0076BE60 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		924B47812833F2A5009204E5 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
@@ -735,6 +751,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		9247418E2834413A0076BE60 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9247418D2834413A0076BE60 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
 		924B47822833F2A5009204E5 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 924B47812833F2A5009204E5 /* XCRemoteSwiftPackageReference "Kingfisher" */;

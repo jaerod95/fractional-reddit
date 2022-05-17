@@ -6,17 +6,3 @@
 //
 
 import Foundation
-
-struct Post: Codable {
-    var kind: String
-    var data: PostData
-}
-
-struct PostData: Codable, Identifiable {
-    var id: String
-    var url: String
-    var author: String
-    var title: String
-    var ups: Int
-    var num_comments: Int
-}

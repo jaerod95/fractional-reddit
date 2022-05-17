@@ -9,8 +9,8 @@ import Foundation
 import Combine
 
 class PostCommentsViewModel: ObservableObject {
-    var postId: String = ""
-    var comments: [String] = []
+    var post: PostData?
+    @Published var comments: [CommentData] = []
     private var cancellables: Set<AnyCancellable> = Set()
     private var postsDataController: PostsDataControllerProtocol = PostsDataController()
     
@@ -19,10 +19,11 @@ class PostCommentsViewModel: ObservableObject {
     }
     
     func fetchComments() {
-        postsDataController.getCommentsForPost(postID: self.postId).sink { completion in
+        postsDataController.getCommentsForPost(postID: self.post?.id ?? "").sink { completion in
             print(completion)
-        } receiveValue: { posts in
-            print(posts)
+        } receiveValue: { comments in
+            print(comments)
+            self.comments = comments
         }
         .store(in: &cancellables)
     }

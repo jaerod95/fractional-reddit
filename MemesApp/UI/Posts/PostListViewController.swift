@@ -56,9 +56,7 @@ extension PostListViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let vc = self.viewModel.presentedViewController as? PullUpController {
-            self.removePullUpController(vc, animated: true, completion: nil)
-        }
+        self.dismissPullup()
     }
 }
 
@@ -104,11 +102,16 @@ extension PostListViewController: PostActionsDelegate {
     }
     
     func commentsPressed(post: PostData) {
-        print(post)
-        let commentsViewController = UIStoryboard(name: "Comments", bundle: nil).instantiateInitialViewController() as? PostCommentsViewController ?? PostCommentsViewController()
-        commentsViewController.viewModel.postId = post.id
-        self.viewModel.presentedViewController = commentsViewController
-        self.addPullUpController(commentsViewController, initialStickyPointOffset: 500, animated: true)
+        let vc = PostCommentsViewController.makeFromStoryboard(post: post, delegate: self)
+        self.viewModel.presentedViewController = vc
+        self.addPullUpController(vc, initialStickyPointOffset: 500, animated: true)
     }
 }
 
+extension PostListViewController: CommentsPullupDelegate {
+    func dismissPullup() {
+        if let vc = self.viewModel.presentedViewController as? PullUpController {
+            self.removePullUpController(vc, animated: true, completion: nil)
+        }
+    }
+}
