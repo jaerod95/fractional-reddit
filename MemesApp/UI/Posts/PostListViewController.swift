@@ -16,6 +16,7 @@ class PostListViewController: UIViewController {
     
     private var viewModel: PostListViewModel = PostListViewModel()
     private var cancellables: Set<AnyCancellable> = Set()
+    private var currentPage: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,12 +79,17 @@ extension PostListViewController: UITableViewDataSource {
 extension PostListViewController: UIScrollViewDelegate {
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         let pageHeight = scrollView.frame.size.height
-        var currentPage = scrollView.contentOffset.y
-        var offset = (scrollView.contentOffset.y - pageHeight / 2) / pageHeight
-        //        if velocity.y > 0.5 {
-        //            offset += pageHeight / 2
-        //        }
-        let page = CGFloat(floor(offset) + 1)
+        
+        let offset = (scrollView.contentOffset.y - pageHeight / 2) / pageHeight
+        var page = CGFloat(floor(offset) + 1)
+        if velocity.y > 0.5 && viewModel.posts.count > currentPage + 1 {
+            page = CGFloat(currentPage + 1)
+        } else if velocity.y < -0.5 && currentPage - 1 >= 0 {
+            page = CGFloat(currentPage - 1)
+        }
+        
+        
+        self.currentPage = Int(page)
         DispatchQueue.main.async {
             scrollView.setContentOffset(CGPoint(x: 0, y: pageHeight * page), animated: true)
         }
