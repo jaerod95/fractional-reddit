@@ -18,38 +18,95 @@
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LWy-Yf-KX4">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="429"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XqW-BY-mGo" userLabel="captionLabel">
-                        <rect key="frame" x="28" y="385" width="358" height="17"/>
-                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9w7-Dz-LGB" userLabel="titleLabel">
                         <rect key="frame" x="28" y="356.5" width="358" height="20.5"/>
                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XqW-BY-mGo" userLabel="captionLabel">
+                        <rect key="frame" x="28" y="385" width="358" height="17"/>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nnx-Ty-bxV" customClass="VerticalButton" customModule="MemesApp" customModuleProvider="target">
+                        <rect key="frame" x="338" y="226" width="48" height="48"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="48" id="EV4-yJ-LSH"/>
+                            <constraint firstAttribute="width" constant="48" id="KMx-CK-zt7"/>
+                        </constraints>
+                        <buttonConfiguration key="configuration" style="plain" image="arrow.up.circle.fill" catalog="system" title="0">
+                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </buttonConfiguration>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G1i-YU-yAW" customClass="VerticalButton" customModule="MemesApp" customModuleProvider="target">
+                        <rect key="frame" x="338" y="290" width="48" height="48"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="48" id="5BK-YO-2L3"/>
+                            <constraint firstAttribute="width" constant="48" id="idB-w6-xqz"/>
+                        </constraints>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" image="message.fill" catalog="system" title="0">
+                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </buttonConfiguration>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MRi-fv-c1S" customClass="VerticalButton" customModule="MemesApp" customModuleProvider="target">
+                        <rect key="frame" x="338" y="354" width="48" height="48"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="48" id="NVd-hS-Fv6"/>
+                            <constraint firstAttribute="width" constant="48" id="mB5-x0-JDN"/>
+                        </constraints>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" image="arrowshape.turn.up.forward.fill" catalog="system" title="Share">
+                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </buttonConfiguration>
+                    </button>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Nm1-bl-cfq" userLabel="profile">
+                        <rect key="frame" x="336" y="160" width="50" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="UmX-dR-cyl"/>
+                            <constraint firstAttribute="height" constant="50" id="ciz-gT-tDY"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="trailingMargin" secondItem="MRi-fv-c1S" secondAttribute="trailing" constant="8" id="4hA-Zl-MTL"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="nnx-Ty-bxV" secondAttribute="trailing" constant="8" id="9ap-BJ-Fac"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Nm1-bl-cfq" secondAttribute="trailing" constant="8" id="Dn7-yX-EWB"/>
                     <constraint firstItem="LWy-Yf-KX4" firstAttribute="top" secondItem="IVd-pP-nCD" secondAttribute="top" id="E9f-JD-PF5"/>
                     <constraint firstAttribute="bottom" secondItem="LWy-Yf-KX4" secondAttribute="bottom" id="Hna-lF-1H2"/>
+                    <constraint firstItem="MRi-fv-c1S" firstAttribute="top" secondItem="G1i-YU-yAW" secondAttribute="bottom" constant="16" id="Sr4-eZ-QX4"/>
                     <constraint firstAttribute="trailingMargin" secondItem="XqW-BY-mGo" secondAttribute="trailing" constant="8" id="Vyg-Ca-L1p"/>
                     <constraint firstAttribute="trailingMargin" secondItem="9w7-Dz-LGB" secondAttribute="trailing" constant="8" id="W4L-20-06L"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="MRi-fv-c1S" secondAttribute="bottom" constant="16" id="WLC-QO-0tE"/>
                     <constraint firstAttribute="trailing" secondItem="LWy-Yf-KX4" secondAttribute="trailing" id="X9u-sg-jmU"/>
                     <constraint firstAttribute="bottomMargin" secondItem="XqW-BY-mGo" secondAttribute="bottom" constant="16" id="dP8-Z4-0kO"/>
                     <constraint firstItem="XqW-BY-mGo" firstAttribute="top" secondItem="9w7-Dz-LGB" secondAttribute="bottom" constant="8" id="e96-0a-ERh"/>
+                    <constraint firstItem="nnx-Ty-bxV" firstAttribute="top" secondItem="Nm1-bl-cfq" secondAttribute="bottom" constant="16" id="f8M-05-drv"/>
                     <constraint firstItem="LWy-Yf-KX4" firstAttribute="leading" secondItem="IVd-pP-nCD" secondAttribute="leading" id="gZ6-vQ-Eqj"/>
+                    <constraint firstItem="G1i-YU-yAW" firstAttribute="top" secondItem="nnx-Ty-bxV" secondAttribute="bottom" constant="16" id="ids-Rq-z2m"/>
                     <constraint firstItem="9w7-Dz-LGB" firstAttribute="leading" secondItem="IVd-pP-nCD" secondAttribute="leadingMargin" constant="8" id="ill-Se-TTD"/>
+                    <constraint firstItem="nnx-Ty-bxV" firstAttribute="top" secondItem="Nm1-bl-cfq" secondAttribute="bottom" constant="16" id="kVF-dJ-CJ5"/>
                     <constraint firstItem="XqW-BY-mGo" firstAttribute="leading" secondItem="IVd-pP-nCD" secondAttribute="leadingMargin" constant="8" id="qPz-ex-eD5"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="G1i-YU-yAW" secondAttribute="trailing" constant="8" id="tK5-xt-uG6"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="authorImage" destination="Nm1-bl-cfq" id="VL1-aS-OrV"/>
                 <outlet property="captionLabel" destination="XqW-BY-mGo" id="BVg-Kb-RgN"/>
+                <outlet property="comments" destination="G1i-YU-yAW" id="zfz-Ct-aKx"/>
                 <outlet property="postImage" destination="LWy-Yf-KX4" id="dyM-rc-m0t"/>
+                <outlet property="share" destination="MRi-fv-c1S" id="8r0-Ls-OQ7"/>
                 <outlet property="titleLabel" destination="9w7-Dz-LGB" id="75A-V6-MVa"/>
+                <outlet property="upvote" destination="nnx-Ty-bxV" id="pMA-tO-0U2"/>
             </connections>
             <point key="canvasLocation" x="89.855072463768124" y="-271.54017857142856"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="arrow.up.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="arrowshape.turn.up.forward.fill" catalog="system" width="128" height="106"/>
+        <image name="message.fill" catalog="system" width="128" height="113"/>
+    </resources>
 </document>
