@@ -8,6 +8,7 @@
 import UIKit
 import Combine
 import PullUpController
+import Toast
 
 class PostListViewController: UIViewController {
     
@@ -22,8 +23,8 @@ class PostListViewController: UIViewController {
         self.viewModel.$posts
             .receive(on: DispatchQueue.main)
             .sink { posts in
-            self.tableView.reloadData()
-        }.store(in: &cancellables)
+                self.tableView.reloadData()
+            }.store(in: &cancellables)
     }
     
     private func configureTableView() {
@@ -79,9 +80,9 @@ extension PostListViewController: UIScrollViewDelegate {
         let pageHeight = scrollView.frame.size.height
         var currentPage = scrollView.contentOffset.y
         var offset = (scrollView.contentOffset.y - pageHeight / 2) / pageHeight
-//        if velocity.y > 0.5 {
-//            offset += pageHeight / 2
-//        }
+        //        if velocity.y > 0.5 {
+        //            offset += pageHeight / 2
+        //        }
         let page = CGFloat(floor(offset) + 1)
         DispatchQueue.main.async {
             scrollView.setContentOffset(CGPoint(x: 0, y: pageHeight * page), animated: true)
@@ -98,7 +99,26 @@ extension PostListViewController: PostActionsDelegate {
     }
     
     func sharePressed(post: PostData) {
-        print(post)
+        guard let url = URL(string: post.url) else {
+            let toast = Toast.default(
+                image: UIImage(systemName: "exclamationmark.triangle.fill") ?? UIImage(),
+                title: "Something went wrong",
+                subtitle: "try again later"
+            )
+            toast.show()
+            return
+        }
+        let sharableItems = [post.title, url] as [Any]
+        let ac = UIActivityViewController(activityItems: sharableItems, applicationActivities: nil)
+        ac.completionWithItemsHandler = { activity, success, items, error in
+            if success {
+                let toast = Toast.text("Your post was shared")
+                toast.show(haptic: .success)
+            }
+        }
+        DispatchQueue.main.async {
+            self.present(ac, animated: true)
+        }
     }
     
     func commentsPressed(post: PostData) {
