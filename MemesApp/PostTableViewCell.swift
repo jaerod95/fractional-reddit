@@ -13,6 +13,8 @@ import Kingfisher
 class PostTableViewCell: UITableViewCell {
     
     @IBOutlet private var postImage: UIImageView!
+    @IBOutlet private var titleLabel: UILabel!
+    @IBOutlet private var captionLabel: UILabel!
     
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -29,6 +31,8 @@ class PostTableViewCell: UITableViewCell {
         } else {
             postImage.kf.setImage(with: url)
         }
+        self.titleLabel.text = post.author
+        self.captionLabel.text = post.title
         self.backgroundColor = .black
     }
 }

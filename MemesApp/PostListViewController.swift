@@ -20,6 +20,7 @@ class PostListViewController: UIViewController {
         tableView.register(UINib(nibName: "PostTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: PostTableViewCell.identifier)
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        self.tableView.allowsSelection = false
         self.viewModel.$posts
             .receive(on: DispatchQueue.main)
             .sink { posts in
