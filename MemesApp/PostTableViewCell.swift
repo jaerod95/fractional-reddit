@@ -16,9 +16,12 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet private var titleLabel: UILabel!
     @IBOutlet private var captionLabel: UILabel!
     @IBOutlet private var authorImage: UIImageView!
-    @IBOutlet private var upvote: VerticalButton!
-    @IBOutlet private var comments: VerticalButton!
-    @IBOutlet private var share: VerticalButton!
+    @IBOutlet private var upvote: UIButton!
+    @IBOutlet private var comments: UIButton!
+    @IBOutlet private var share: UIButton!
+    
+    private var actionsDelegate: PostActionsDelegate?
+    private var post: PostData?
     
     
     override func prepareForReuse() {
@@ -26,7 +29,9 @@ class PostTableViewCell: UITableViewCell {
         self.postImage.image = nil
     }
     
-    func configure(post: PostData) {
+    func configure(post: PostData, actionsDelegate: PostActionsDelegate) {
+        self.actionsDelegate = actionsDelegate
+        self.post = post
         guard let url: URL = URL(string: post.url) else {
             return
         }
@@ -38,26 +43,18 @@ class PostTableViewCell: UITableViewCell {
         }
         self.titleLabel.text = post.author
         self.captionLabel.text = post.title
+        self.comments.addTarget(self, action: #selector(commentsPressed), for: .touchUpInside)
         self.backgroundColor = .black
+    }
+
+    @objc func commentsPressed() {
+        guard let postData = self.post else {
+            return
+        }
+        self.actionsDelegate?.commentsPressed(post: postData)
     }
 }
 
-class VerticalButton: UIButton {
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        self.contentHorizontalAlignment = .left
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        centerButtonImageAndTitle()
-    }
-    
-    private func centerButtonImageAndTitle() {
-        let titleSize = self.titleLabel?.frame.size ?? .zero
-        let imageSize = self.imageView?.frame.size  ?? .zero
-        let spacing: CGFloat = 6.0
-        self.imageEdgeInsets = UIEdgeInsets(top: -(titleSize.height + spacing),left: 0, bottom: 0, right:  -titleSize.width)
-        self.titleEdgeInsets = UIEdgeInsets(top: 0, left: -imageSize.width, bottom: -(imageSize.height + spacing), right: 0)
-    }
+protocol PostActionsDelegate {
+    func commentsPressed(post: PostData)
 }

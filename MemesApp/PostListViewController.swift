@@ -51,7 +51,7 @@ extension PostListViewController: UITableViewDataSource {
         guard let cell: PostTableViewCell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as? PostTableViewCell else {
             return UITableViewCell()
         }
-        cell.configure(post: viewModel.posts[indexPath.row])
+        cell.configure(post: viewModel.posts[indexPath.row], actionsDelegate: self)
         return cell
     }
 }
@@ -71,6 +71,12 @@ extension PostListViewController: UIScrollViewDelegate {
     }
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         
+    }
+}
+
+extension PostListViewController: PostActionsDelegate {
+    func commentsPressed(post: PostData) {
+        print(post)
     }
 }
 
