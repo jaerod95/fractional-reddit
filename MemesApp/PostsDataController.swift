@@ -53,4 +53,9 @@ struct PostsDataController: PostsDataControllerProtocol {
             }
             .eraseToAnyPublisher()
     }
+    
+    func getoAuthToken() {
+        let request = URLRequest()
+        URLSession.shared.dataTaskPublisher(for: request)
+    }
 }
