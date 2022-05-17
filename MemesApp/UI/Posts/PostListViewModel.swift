@@ -11,6 +11,7 @@ import Combine
 
 protocol PostListViewModelProtocol: ObservableObject {
     var posts: [PostData] { get }
+    func fetchPosts()
 }
 
 class PostListViewModel: ObservableObject, PostListViewModelProtocol {
@@ -20,6 +21,10 @@ class PostListViewModel: ObservableObject, PostListViewModelProtocol {
     var presentedViewController: UIViewController?
     
     init() {
+        fetchPosts()
+    }
+    
+    func fetchPosts() {
         postsDataController.getPosts().sink { completion in
             print(completion)
         } receiveValue: { posts in
@@ -27,6 +32,5 @@ class PostListViewModel: ObservableObject, PostListViewModelProtocol {
             self.posts = posts
         }
         .store(in: &cancellables)
-
     }
 }

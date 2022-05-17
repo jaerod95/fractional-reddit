@@ -27,25 +27,42 @@ class PostCommentsViewController: PullUpController {
     
     private var cancellables: Set<AnyCancellable> = Set()
     private var delegate: CommentsPullupDelegate?
+    private let refreshControl = UIRefreshControl()
     var viewModel: PostCommentsViewModel = PostCommentsViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.titleLabel.text = "\(self.viewModel.post?.num_comments ?? 0) Comments"
-        tableView.register(UINib(nibName: "PostCommentTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: PostCommentTableViewCell.identifier)
-        self.tableView.dataSource = self
-        self.tableView.allowsSelection = false
-        self.tableView.contentInsetAdjustmentBehavior = .never
+        self.setupTableView()
+        
+        
         self.viewModel.fetchComments()
         self.viewModel.$comments
             .receive(on: DispatchQueue.main)
             .sink { comments in
+                self.refreshControl.endRefreshing()
                 self.tableView.reloadData()
+                
             }.store(in: &cancellables)
         self.view.roundCorners(corners: [.topLeft, .topRight], radius: 8)
         self.view.clipsToBounds = true
     }
     
+    private func setupTableView() {
+        tableView.register(UINib(nibName: "PostCommentTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: PostCommentTableViewCell.identifier)
+        self.tableView.dataSource = self
+        self.tableView.allowsSelection = false
+        self.tableView.contentInsetAdjustmentBehavior = .never
+        // Add refresh
+       
+        refreshControl.addTarget(self, action: #selector(reloadComments), for: .valueChanged)
+        self.tableView.refreshControl = refreshControl
+    }
+    
+    @objc private func reloadComments() {
+        self.refreshControl.beginRefreshing()
+        viewModel.fetchComments()
+    }
 }
 
 extension PostCommentsViewController: UITableViewDataSource {

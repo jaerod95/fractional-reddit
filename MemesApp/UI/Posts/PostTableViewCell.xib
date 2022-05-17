@@ -15,7 +15,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="414" height="429"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LWy-Yf-KX4" customClass="AnimatedImageView" customModule="Kingfisher">
+                    <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LWy-Yf-KX4" customClass="AnimatedImageView" customModule="Kingfisher">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="429"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9w7-Dz-LGB" userLabel="titleLabel">
@@ -31,20 +31,18 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="XDm-mx-ZXA">
-                        <rect key="frame" x="346" y="244" width="48" height="41"/>
+                        <rect key="frame" x="346" y="220" width="48" height="65"/>
                         <subviews>
-                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nnx-Ty-bxV">
-                                <rect key="frame" x="12" y="0.0" width="24" height="24"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oEB-TA-4ud" customClass="AnimationView" customModule="Lottie">
+                                <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="24" id="EV4-yJ-LSH"/>
-                                    <constraint firstAttribute="width" constant="24" id="KMx-CK-zt7"/>
+                                    <constraint firstAttribute="width" constant="48" id="EEl-hu-ee6"/>
+                                    <constraint firstAttribute="height" constant="48" id="pPI-BO-A9h"/>
                                 </constraints>
-                                <buttonConfiguration key="configuration" style="plain" image="arrow.up.circle.fill" catalog="system">
-                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </buttonConfiguration>
-                            </button>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FGu-fm-6CJ">
-                                <rect key="frame" x="19.5" y="24" width="9" height="17"/>
+                                <rect key="frame" x="19.5" y="48" width="9" height="17"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -80,7 +78,7 @@
                         </constraints>
                     </stackView>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Nm1-bl-cfq" userLabel="profile">
-                        <rect key="frame" x="346" y="180" width="48" height="48"/>
+                        <rect key="frame" x="346" y="156" width="48" height="48"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="48" id="UmX-dR-cyl"/>
                             <constraint firstAttribute="height" constant="48" id="ciz-gT-tDY"/>
@@ -144,15 +142,14 @@
                 <outlet property="shareLabel" destination="Fml-UR-6dJ" id="ZUK-aG-29M"/>
                 <outlet property="shareStackView" destination="dCw-Zr-6XA" id="WVL-Cn-369"/>
                 <outlet property="titleLabel" destination="9w7-Dz-LGB" id="75A-V6-MVa"/>
-                <outlet property="upvote" destination="nnx-Ty-bxV" id="pMA-tO-0U2"/>
                 <outlet property="upvoteLabel" destination="FGu-fm-6CJ" id="ETM-Zi-e6N"/>
                 <outlet property="upvoteStackView" destination="XDm-mx-ZXA" id="tiI-z6-giJ"/>
+                <outlet property="upvoteView" destination="oEB-TA-4ud" id="8yG-6v-e5t"/>
             </connections>
             <point key="canvasLocation" x="89.855072463768124" y="-271.54017857142856"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="arrow.up.circle.fill" catalog="system" width="128" height="121"/>
         <image name="arrowshape.turn.up.forward.fill" catalog="system" width="128" height="106"/>
         <image name="message.fill" catalog="system" width="128" height="113"/>
     </resources>

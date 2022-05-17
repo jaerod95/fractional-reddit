@@ -17,6 +17,7 @@ class PostListViewController: UIViewController {
     private var viewModel: PostListViewModel = PostListViewModel()
     private var cancellables: Set<AnyCancellable> = Set()
     private var currentPage: Int = 0
+    private let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +35,14 @@ class PostListViewController: UIViewController {
         self.tableView.dataSource = self
         self.tableView.contentInsetAdjustmentBehavior = .never
         self.tableView.backgroundColor = .black
+        refreshControl.addTarget(self, action: #selector(reloadComments), for: .valueChanged)
+        refreshControl.tintColor = .white
+        self.tableView.refreshControl = refreshControl
+    }
+    
+    @objc private func reloadComments() {
+        self.refreshControl.beginRefreshing()
+        viewModel.fetchPosts()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -130,6 +139,7 @@ extension PostListViewController: PostActionsDelegate {
     func commentsPressed(post: PostData) {
         let vc = PostCommentsViewController.makeFromStoryboard(post: post, delegate: self)
         self.viewModel.presentedViewController = vc
+        Haptic.light()
         self.addPullUpController(vc, initialStickyPointOffset: 500, animated: true)
     }
 }
@@ -137,6 +147,7 @@ extension PostListViewController: PostActionsDelegate {
 extension PostListViewController: CommentsPullupDelegate {
     func dismissPullup() {
         if let vc = self.viewModel.presentedViewController as? PullUpController {
+            Haptic.light()
             self.removePullUpController(vc, animated: true, completion: nil)
         }
     }

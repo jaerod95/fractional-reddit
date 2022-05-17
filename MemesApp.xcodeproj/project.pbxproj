@@ -12,6 +12,8 @@
 		9247418F2834413A0076BE60 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 9247418E2834413A0076BE60 /* Alamofire */; };
 		92474193283456900076BE60 /* UIView+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92474192283456900076BE60 /* UIView+extensions.swift */; };
 		9247419628345E8B0076BE60 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 9247419528345E8B0076BE60 /* Toast */; };
+		92474198283462980076BE60 /* upvote.json in Resources */ = {isa = PBXBuildFile; fileRef = 92474197283462980076BE60 /* upvote.json */; };
+		9247419B283462C80076BE60 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 9247419A283462C80076BE60 /* Lottie */; };
 		924B473E2833E721009204E5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B473D2833E721009204E5 /* AppDelegate.swift */; };
 		924B47402833E721009204E5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B473F2833E721009204E5 /* SceneDelegate.swift */; };
 		924B47422833E721009204E5 /* PostListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B47412833E721009204E5 /* PostListViewController.swift */; };
@@ -57,6 +59,7 @@
 		9247418928342E880076BE60 /* Haptic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Haptic.swift; sourceTree = "<group>"; };
 		9247418B283431010076BE60 /* Comments.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Comments.storyboard; sourceTree = "<group>"; };
 		92474192283456900076BE60 /* UIView+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+extensions.swift"; sourceTree = "<group>"; };
+		92474197283462980076BE60 /* upvote.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = upvote.json; sourceTree = "<group>"; };
 		924B473A2833E721009204E5 /* MemesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		924B473D2833E721009204E5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		924B473F2833E721009204E5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -88,6 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9247419B283462C80076BE60 /* Lottie in Frameworks */,
 				9247419628345E8B0076BE60 /* Toast in Frameworks */,
 				9247418F2834413A0076BE60 /* Alamofire in Frameworks */,
 				924B47832833F2A5009204E5 /* Kingfisher in Frameworks */,
@@ -174,6 +178,7 @@
 				924B473F2833E721009204E5 /* SceneDelegate.swift */,
 				924B47742833EC48009204E5 /* PostsDataController.swift */,
 				924B47462833E722009204E5 /* Assets.xcassets */,
+				92474197283462980076BE60 /* upvote.json */,
 				924B47482833E722009204E5 /* LaunchScreen.storyboard */,
 				924B474B2833E722009204E5 /* Info.plist */,
 			);
@@ -246,6 +251,7 @@
 				924B478528340285009204E5 /* PullUpController */,
 				9247418E2834413A0076BE60 /* Alamofire */,
 				9247419528345E8B0076BE60 /* Toast */,
+				9247419A283462C80076BE60 /* Lottie */,
 			);
 			productName = MemesApp;
 			productReference = 924B473A2833E721009204E5 /* MemesApp.app */;
@@ -324,6 +330,7 @@
 				924B478428340285009204E5 /* XCRemoteSwiftPackageReference "PullUpController" */,
 				9247418D2834413A0076BE60 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				9247419428345E8B0076BE60 /* XCRemoteSwiftPackageReference "toast-swift" */,
+				92474199283462C80076BE60 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = 924B473B2833E721009204E5 /* Products */;
 			projectDirPath = "";
@@ -347,6 +354,7 @@
 				924B47472833E722009204E5 /* Assets.xcassets in Resources */,
 				924B47452833E721009204E5 /* Main.storyboard in Resources */,
 				924B477D2833EF72009204E5 /* PostTableViewCell.xib in Resources */,
+				92474198283462980076BE60 /* upvote.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -744,6 +752,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		92474199283462C80076BE60 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
 		924B47812833F2A5009204E5 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
@@ -772,6 +788,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 9247419428345E8B0076BE60 /* XCRemoteSwiftPackageReference "toast-swift" */;
 			productName = Toast;
+		};
+		9247419A283462C80076BE60 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 92474199283462C80076BE60 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
 		};
 		924B47822833F2A5009204E5 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;

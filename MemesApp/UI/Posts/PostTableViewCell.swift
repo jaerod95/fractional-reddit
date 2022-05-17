@@ -8,15 +8,15 @@
 import Foundation
 import UIKit
 import Kingfisher
+import Lottie
 
 class PostTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var actionsBlurredBackground: UIView!
+    @IBOutlet weak var upvoteView: AnimationView!
     @IBOutlet private var postImage: AnimatedImageView!
     @IBOutlet private var titleLabel: UILabel!
     @IBOutlet private var captionLabel: UILabel!
     @IBOutlet private var authorImage: UIImageView!
-    @IBOutlet private var upvote: UIButton!
     @IBOutlet private var upvoteLabel: UILabel!
     @IBOutlet private var comments: UIButton!
     @IBOutlet private var commentsLabel: UILabel!
@@ -33,6 +33,7 @@ class PostTableViewCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         self.postImage.kf.setImage(with: URL(string: ""))
+        self.upvoteView.currentFrame = 0
     }
     
     func configure(post: PostData, actionsDelegate: PostActionsDelegate) {
@@ -40,17 +41,25 @@ class PostTableViewCell: UITableViewCell {
         self.post = post
         
         self.selectionStyle = .none
+        self.authorImage.layer.cornerRadius = 24
         
-        self.upvoteStackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(upvotePressed)))
-        self.commentsStackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(commentsPressed)))
-        self.shareStackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(sharePressed)))
-        
-        addShadow(self.upvote)
         addShadow(self.upvoteLabel)
         addShadow(self.comments)
         addShadow(self.commentsLabel)
         addShadow(self.share)
         addShadow(self.shareLabel)
+        
+        self.upvoteStackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(upvotePressed)))
+        self.commentsStackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(commentsPressed)))
+        self.shareStackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(sharePressed)))
+        let doubleTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(upvotePressed))
+        doubleTap.numberOfTapsRequired = 2
+        self.postImage.addGestureRecognizer(doubleTap)
+        
+        self.upvoteView.animation = Animation.named("upvote", bundle: Bundle.main, subdirectory: nil, animationCache: nil)
+
+        
+        // Setup Post Specific Data
         
         guard let url: URL = URL(string: post.url) else {
             return
@@ -58,7 +67,6 @@ class PostTableViewCell: UITableViewCell {
         
         postImage.kf.setImage(with: url)
         self.authorImage.kf.setImage(with: URL(string: "https://static.vecteezy.com/system/resources/thumbnails/003/337/584/small/default-avatar-photo-placeholder-profile-icon-vector.jpg"))
-        self.authorImage.layer.cornerRadius = 24
         self.titleLabel.text = post.author
         self.captionLabel.text = post.title
         self.upvoteLabel.text = "\(post.ups)"
@@ -74,6 +82,12 @@ class PostTableViewCell: UITableViewCell {
     }
 
     @objc func upvotePressed() {
+        if upvoteView.currentFrame != 0 {
+            self.upvoteView.currentFrame = 0
+        } else {
+            self.upvoteView.play(toFrame: 34)
+        }
+        
         guard let postData = self.post else {
             return
         }
