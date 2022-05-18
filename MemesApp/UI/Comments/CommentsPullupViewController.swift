@@ -51,6 +51,7 @@ class PostCommentsViewController: PullUpController {
     private func setupTableView() {
         tableView.register(UINib(nibName: "PostCommentTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: PostCommentTableViewCell.identifier)
         self.tableView.dataSource = self
+        self.tableView.prefetchDataSource = self
         self.tableView.allowsSelection = false
         self.tableView.contentInsetAdjustmentBehavior = .never
         // Add refresh
@@ -61,7 +62,7 @@ class PostCommentsViewController: PullUpController {
     
     @objc private func reloadComments() {
         self.refreshControl.beginRefreshing()
-        viewModel.fetchComments()
+        viewModel.fetchComments(replacing: true)
     }
 }
 
@@ -76,6 +77,16 @@ extension PostCommentsViewController: UITableViewDataSource {
         }
         cell.configure(comment: viewModel.comments[indexPath.row])
         return cell
+    }
+}
+
+extension PostCommentsViewController: UITableViewDataSourcePrefetching {
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        for indexPath in indexPaths {
+            if indexPath.row > viewModel.comments.count - 20 && viewModel.hasMoreComments {
+                self.viewModel.fetchComments()
+            }
+        }
     }
 }
 

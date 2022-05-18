@@ -10,8 +10,8 @@ import Combine
 import Alamofire
 
 protocol PostsDataControllerProtocol {
-    func getPosts(after: String?, replacing: Bool) -> AnyPublisher<[PostData], Error>
-    func getCommentsForPost(postID: String) -> AnyPublisher<[CommentData], Error>
+    func getPosts(after: String?) -> AnyPublisher<[PostData], Error>
+    func getCommentsForPost(postID: String, after: String?) -> AnyPublisher<[CommentData], Error>
 }
 
 enum APIError: LocalizedError {
@@ -19,19 +19,22 @@ enum APIError: LocalizedError {
 }
 
 struct PostsDataController: PostsDataControllerProtocol {
-    func getPosts(after: String? = nil, replacing: Bool = false) -> AnyPublisher<[PostData], Error> {
+    func getPosts(after: String? = nil) -> AnyPublisher<[PostData], Error> {
         var urlComponents = URLComponents(string: "https://www.reddit.com/r/memes.json")
-        urlComponents?.queryItems = [URLQueryItem(name: "after", value: after)]
+        urlComponents?.queryItems = [
+            URLQueryItem(name: "after", value: after),
+            URLQueryItem(name: "limit", value: "25"),
+        ]
         
         guard let url: URL = urlComponents?.url else {
             return Fail(error: APIError.invalidRequestError("Unable to parse URL")).eraseToAnyPublisher()
         }
+
         return URLSession.shared.dataTaskPublisher(for: url)
             .map(\.data)
             .decode(type: Listing.self, decoder: JSONDecoder())
             .tryMap { listing in
                 return listing.data.children.compactMap {
-                    print($0)
                     switch ($0) {
                     case .post(let postData):
                         if postData.url.range(of: "(.png|.jpg|.gif)$", options: .regularExpression) != nil {
@@ -46,10 +49,15 @@ struct PostsDataController: PostsDataControllerProtocol {
             .eraseToAnyPublisher()
     }
     
-    func getCommentsForPost(postID: String) -> AnyPublisher<[CommentData], Error> {
-        print("https://www.reddit.com/r/memes/comments/\(postID).json")
+    func getCommentsForPost(postID: String, after: String? = nil) -> AnyPublisher<[CommentData], Error> {
         
-        guard let url: URL = URL(string: "https://www.reddit.com/r/memes/comments/\(postID).json") else {
+        var urlComponents = URLComponents(string: "https://www.reddit.com/r/memes/comments/\(postID).json")
+        urlComponents?.queryItems = [
+            URLQueryItem(name: "after", value: after),
+            URLQueryItem(name: "limit", value: "25"),
+        ]
+        
+        guard let url: URL = urlComponents?.url else {
             return Fail(error: APIError.invalidRequestError("Unable to parse URL")).eraseToAnyPublisher()
         }
         

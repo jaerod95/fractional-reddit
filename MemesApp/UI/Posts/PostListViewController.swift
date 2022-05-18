@@ -33,6 +33,7 @@ class PostListViewController: UIViewController {
         self.tableView.register(UINib(nibName: "PostTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: PostTableViewCell.identifier)
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        self.tableView.prefetchDataSource = self
         self.tableView.contentInsetAdjustmentBehavior = .never
         self.tableView.backgroundColor = .black
         refreshControl.addTarget(self, action: #selector(reloadComments), for: .valueChanged)
@@ -83,6 +84,18 @@ extension PostListViewController: UITableViewDataSource {
         cell.configure(post: viewModel.posts[indexPath.row], actionsDelegate: self)
         return cell
     }
+}
+
+extension PostListViewController: UITableViewDataSourcePrefetching {
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        for indexPath in indexPaths {
+            if indexPath.row > viewModel.posts.count - 20 && viewModel.hasMorePosts {
+                self.viewModel.fetchPosts()
+            }
+        }
+    }
+    
+    
 }
 
 extension PostListViewController: UIScrollViewDelegate {
