@@ -25,34 +25,42 @@ class PostsDataController: PostsDataControllerProtocol {
     private var cancellables: Set<AnyCancellable> = Set()
     
     func getPosts(after: String? = nil) -> AnyPublisher<[PostData], Error> {
-        var urlComponents = URLComponents(string: "https://www.reddit.com/r/memes.json")
-        urlComponents?.queryItems = [
-            URLQueryItem(name: "after", value: after),
-            URLQueryItem(name: "limit", value: "25"),
-        ]
-        
-        guard let url: URL = urlComponents?.url else {
-            return Fail(error: APIError.invalidRequestError("Unable to parse URL")).eraseToAnyPublisher()
-        }
-        
-        return URLSession.shared.dataTaskPublisher(for: url)
-            .map(\.data)
-            .decode(type: Listing.self, decoder: JSONDecoder())
-            .tryMap { listing in
-                return listing.data.children.compactMap {
-                    switch ($0) {
-                    case .post(let postData):
-                        print(postData.fullName)
-                        if postData.url.range(of: "(.png|.jpg|.gif)$", options: .regularExpression) != nil {
-                            return postData
-                        }
-                    default:
-                        break
-                    }
-                    return nil
+        return getAuthToken()
+            .flatMap { token -> AnyPublisher<[PostData], Error> in
+                
+//                let headers: HTTPHeaders = ["Authorization": "Bearer \(token.accessToken)"]
+                var urlComponents = URLComponents(string: "https://www.reddit.com/r/memes.json")
+                urlComponents?.queryItems = [
+                    URLQueryItem(name: "after", value: after),
+                    URLQueryItem(name: "limit", value: "25"),
+                ]
+                
+                guard let url: URL = urlComponents?.url else {
+                    return Fail(error: APIError.invalidRequestError("Unable to parse URL")).eraseToAnyPublisher()
                 }
-            }
-            .eraseToAnyPublisher()
+                
+                guard let urlRequest: URLRequest = try? URLRequest(url: url, method: .get, headers: nil) else {
+                    return Fail(error: APIError.invalidRequestError("Unable to parse URL")).eraseToAnyPublisher()
+                }
+                
+                return URLSession.shared.dataTaskPublisher(for: urlRequest)
+                    .map(\.data)
+                    .decode(type: Listing.self, decoder: JSONDecoder())
+                    .tryMap { listing in
+                        return listing.data.children.compactMap {
+                            switch ($0) {
+                            case .post(let postData):
+                                if postData.url.range(of: "(.png|.jpg|.gif)$", options: .regularExpression) != nil {
+                                    return postData
+                                }
+                            default:
+                                break
+                            }
+                            return nil
+                        }
+                    }
+                    .eraseToAnyPublisher()
+            }.eraseToAnyPublisher()
     }
     
     func getCommentsForPost(postID: String, after: String? = nil) -> AnyPublisher<[CommentData], Error> {
@@ -89,7 +97,7 @@ class PostsDataController: PostsDataControllerProtocol {
         return getAuthToken()
             .flatMap { token -> AnyPublisher<Bool, Error> in
                 let headers: HTTPHeaders = ["Authorization": "Bearer \(token.accessToken)"]
-                var url = URLComponents(string: "https://www.reddit.com/api/vote")
+                var url = URLComponents(string: "https://www.oauth.reddit.com/api/vote")
                 url?.queryItems = [
                     URLQueryItem(name: "dir", value: "1"),
                     URLQueryItem(name: "id", value: postFullName),
@@ -104,7 +112,11 @@ class PostsDataController: PostsDataControllerProtocol {
                 }
                 return URLSession.shared.dataTaskPublisher(for: urlRequest)
                     .map(\.data)
-                    .decode(type: Bool.self, decoder: JSONDecoder())
+                    .decode(type: String.self, decoder: JSONDecoder())
+                    .tryMap {
+                        print($0)
+                        return true
+                    }
                     .eraseToAnyPublisher()
             }
             .eraseToAnyPublisher()

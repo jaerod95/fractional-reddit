@@ -59,6 +59,7 @@ struct PostData: Codable, Identifiable {
     var title: String
     var ups: Int
     var num_comments: Int
+    var likes: Bool?
     
     var fullName: String {
         "t3_\(id)"
