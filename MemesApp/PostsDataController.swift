@@ -10,15 +10,20 @@ import Combine
 import Alamofire
 
 protocol PostsDataControllerProtocol {
+    var accessToken: AccessToken? { get }
     func getPosts(after: String?) -> AnyPublisher<[PostData], Error>
     func getCommentsForPost(postID: String, after: String?) -> AnyPublisher<[CommentData], Error>
+    func getAuthToken() -> AnyPublisher<AccessToken , Error>
 }
 
 enum APIError: LocalizedError {
     case invalidRequestError(String)
 }
 
-struct PostsDataController: PostsDataControllerProtocol {
+class PostsDataController: PostsDataControllerProtocol {
+    var accessToken: AccessToken?
+    private var cancellables: Set<AnyCancellable> = Set()
+    
     func getPosts(after: String? = nil) -> AnyPublisher<[PostData], Error> {
         var urlComponents = URLComponents(string: "https://www.reddit.com/r/memes.json")
         urlComponents?.queryItems = [
@@ -29,7 +34,7 @@ struct PostsDataController: PostsDataControllerProtocol {
         guard let url: URL = urlComponents?.url else {
             return Fail(error: APIError.invalidRequestError("Unable to parse URL")).eraseToAnyPublisher()
         }
-
+        
         return URLSession.shared.dataTaskPublisher(for: url)
             .map(\.data)
             .decode(type: Listing.self, decoder: JSONDecoder())
@@ -37,6 +42,7 @@ struct PostsDataController: PostsDataControllerProtocol {
                 return listing.data.children.compactMap {
                     switch ($0) {
                     case .post(let postData):
+                        print(postData.fullName)
                         if postData.url.range(of: "(.png|.jpg|.gif)$", options: .regularExpression) != nil {
                             return postData
                         }
@@ -61,6 +67,8 @@ struct PostsDataController: PostsDataControllerProtocol {
             return Fail(error: APIError.invalidRequestError("Unable to parse URL")).eraseToAnyPublisher()
         }
         
+        print(url)
+        
         return URLSession.shared.dataTaskPublisher(for: url)
             .map(\.data)
             .decode(type: [Listing].self, decoder: JSONDecoder())
@@ -77,28 +85,64 @@ struct PostsDataController: PostsDataControllerProtocol {
             .eraseToAnyPublisher()
     }
     
-    func getoAuthToken() {
+    func upvotePost(postFullName: String) -> AnyPublisher<Bool, Error> {
+        return getAuthToken()
+            .flatMap { token -> AnyPublisher<Bool, Error> in
+                let headers: HTTPHeaders = ["Authorization": "Bearer \(token.accessToken)"]
+                var url = URLComponents(string: "https://www.reddit.com/api/vote")
+                url?.queryItems = [
+                    URLQueryItem(name: "dir", value: "1"),
+                    URLQueryItem(name: "id", value: postFullName),
+                    
+                ]
+                guard let url = url?.url else {
+                    return Fail(error: APIError.invalidRequestError("Unable to parse URL")).eraseToAnyPublisher()
+                }
+                
+                guard let urlRequest = try? URLRequest(url: url, method: .post, headers: headers) else {
+                    return Fail(error: APIError.invalidRequestError("Unable to parse URL")).eraseToAnyPublisher()
+                }
+                return URLSession.shared.dataTaskPublisher(for: urlRequest)
+                    .map(\.data)
+                    .decode(type: Bool.self, decoder: JSONDecoder())
+                    .eraseToAnyPublisher()
+            }
+            .eraseToAnyPublisher()
+    }
+    
+    func getAuthToken() -> AnyPublisher<AccessToken, Error> {
+        if let token = accessToken {
+            return Just(token)
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
+        }
+        
         let user = "t6u5k2GJ5kQhN4_zk6ZTHg"
         let password = "CMSKS9-8XekqFJjZz80LnB3B6wLd3g"
         let credentialData = "\(user):\(password)".data(using: String.Encoding.utf8)!
         let base64Credentials = credentialData.base64EncodedString(options: [])
         let headers: HTTPHeaders = ["Authorization": "Basic \(base64Credentials)"]
-        let params = ["grant_type": "password", "username": "AgileBasis", "password": "tygkiq-zukfa8-goWkoq"]
-        var url = URLComponents(string: "https://www.google.com/search/")!
+        var url = URLComponents(string: "https://www.reddit.com/api/v1/access_token")
         
-        url.queryItems = [
+        url?.queryItems = [
             URLQueryItem(name: "grant_type", value: "password"),
             URLQueryItem(name: "username", value: "AgileBasis"),
             URLQueryItem(name: "password", value: "tygkiq-zukfa8-goWkoq")
         ]
-        do {
-        let urlRequest = try URLRequest(url: url.url!, method: .post, headers: headers)
-        URLSession.shared.dataTaskPublisher(for: urlRequest)
-            .map(\.data)
-            .decode(type: [Listing].self, decoder: JSONDecoder())
-            .eraseToAnyPublisher()
-        } catch {
-            print("ERROR! Couldn get the token")
+        guard let url = url?.url else {
+            return Fail(error: APIError.invalidRequestError("Unable to parse URL")).eraseToAnyPublisher()
         }
+        
+        guard let urlRequest = try? URLRequest(url: url, method: .post, headers: headers) else {
+            return Fail(error: APIError.invalidRequestError("Unable to parse URL")).eraseToAnyPublisher()
+        }
+        return URLSession.shared.dataTaskPublisher(for: urlRequest)
+            .map(\.data)
+            .decode(type: AccessToken.self, decoder: JSONDecoder())
+            .map { token in
+                self.accessToken = token
+                return token
+            }
+            .eraseToAnyPublisher()
     }
 }

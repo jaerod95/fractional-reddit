@@ -59,6 +59,10 @@ struct PostData: Codable, Identifiable {
     var title: String
     var ups: Int
     var num_comments: Int
+    
+    var fullName: String {
+        "t3_\(id)"
+    }
 }
 
 struct CommentData: Codable, Identifiable {
@@ -66,4 +70,8 @@ struct CommentData: Codable, Identifiable {
     var body: String?
     var author: String?
     var ups: Int
+    
+    var fullName: String {
+        "t1_\(id)"
+    }
 }

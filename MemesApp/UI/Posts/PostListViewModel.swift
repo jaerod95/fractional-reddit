@@ -35,7 +35,7 @@ class PostListViewModel: ObservableObject, PostListViewModelProtocol {
         var after: String?
         if !replacing {
             if let lastPost = self.posts.last {
-                after = "t3_\(String(describing: lastPost.id))"
+                after = lastPost.fullName
             }
         }
         postsDataController.getPosts(after: after).sink { completion in

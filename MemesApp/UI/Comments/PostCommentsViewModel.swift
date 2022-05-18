@@ -19,18 +19,18 @@ class PostCommentsViewModel: ObservableObject {
     init() {}
     
     func fetchComments(replacing: Bool = false) {
-        if isFetching {
+        if isFetching && !replacing {
             return
         }
         isFetching = true
         var after: String?
         if !replacing {
             if let lastComment = self.comments.last {
-                after = "t1_\(String(describing: lastComment.id))"
+                after = lastComment.fullName
             }
         }
         postsDataController.getCommentsForPost(postID: self.post?.id ?? "", after: after).sink { completion in
-            self.isFetching = false
+//            self.isFetching = false
         } receiveValue: { comments in
             if replacing {
                 self.comments = comments

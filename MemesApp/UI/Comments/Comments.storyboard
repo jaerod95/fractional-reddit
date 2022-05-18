@@ -18,7 +18,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="BSy-J7-YcY">
                                 <rect key="frame" x="0.0" y="89" width="414" height="773"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Comments" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="buy-9Y-elp">
                                 <rect key="frame" x="8" y="60" width="398" height="21"/>
@@ -40,7 +40,7 @@
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="BSy-J7-YcY" secondAttribute="bottom" id="5EU-U7-afk"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="2OX-L5-OhC" secondAttribute="trailing" constant="16" id="Ah3-Y5-iXM"/>
@@ -65,8 +65,8 @@
     </scenes>
     <resources>
         <image name="xmark" catalog="system" width="128" height="113"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        <systemColor name="secondarySystemBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
