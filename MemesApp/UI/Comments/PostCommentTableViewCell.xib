@@ -23,14 +23,14 @@
                             <constraint firstAttribute="height" constant="32" id="jdW-ar-5It"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="author" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lcU-m1-62v">
-                        <rect key="frame" x="52" y="8" width="354" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="author" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lcU-m1-62v">
+                        <rect key="frame" x="52" y="8" width="213" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.52549019610000003" green="0.52941176469999995" blue="0.5450980392" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="comment" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yEC-WH-9lh">
-                        <rect key="frame" x="52" y="33" width="354" height="20.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="comment" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yEC-WH-9lh">
+                        <rect key="frame" x="52" y="33" width="213" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -41,13 +41,31 @@
                         <state key="normal" title="Button"/>
                         <buttonConfiguration key="configuration" style="plain" title="View Replies (4)"/>
                     </button>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V8J-Gv-c53" customClass="AnimationView" customModule="Lottie">
+                        <rect key="frame" x="366" y="8" width="32" height="32"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="32" id="Ecj-1y-V94"/>
+                            <constraint firstAttribute="width" constant="32" id="Yra-Y7-5FO"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0b3-pI-gfT">
+                        <rect key="frame" x="368" y="40" width="28.5" height="13.5"/>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                        <color key="textColor" red="0.52549019610000003" green="0.52941176469999995" blue="0.5450980392" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                 <constraints>
                     <constraint firstAttribute="trailingMargin" secondItem="HK5-xQ-MOx" secondAttribute="trailing" constant="8" id="67A-pg-Y3u"/>
                     <constraint firstItem="HK5-xQ-MOx" firstAttribute="leading" secondItem="yEC-WH-9lh" secondAttribute="leading" id="DB7-SV-TtP"/>
+                    <constraint firstItem="V8J-Gv-c53" firstAttribute="top" secondItem="E2U-Te-pUD" secondAttribute="top" constant="8" id="DVR-jL-4AC"/>
                     <constraint firstItem="yEC-WH-9lh" firstAttribute="leading" secondItem="lcU-m1-62v" secondAttribute="leading" id="Fn4-0m-7yt"/>
+                    <constraint firstAttribute="trailing" secondItem="V8J-Gv-c53" secondAttribute="trailing" constant="16" id="H86-0R-fgd"/>
                     <constraint firstItem="HK5-xQ-MOx" firstAttribute="top" secondItem="yEC-WH-9lh" secondAttribute="bottom" constant="8" id="HgB-LR-I97"/>
+                    <constraint firstItem="0b3-pI-gfT" firstAttribute="top" secondItem="V8J-Gv-c53" secondAttribute="bottom" id="Obe-mK-K2u"/>
+                    <constraint firstItem="0b3-pI-gfT" firstAttribute="centerX" secondItem="V8J-Gv-c53" secondAttribute="centerX" id="Ps8-HD-gLC"/>
                     <constraint firstAttribute="trailing" secondItem="lcU-m1-62v" secondAttribute="trailing" constant="8" id="Pux-kn-Ig4"/>
                     <constraint firstItem="yEC-WH-9lh" firstAttribute="top" secondItem="lcU-m1-62v" secondAttribute="bottom" constant="4" id="SJx-ob-dLq"/>
                     <constraint firstItem="lcU-m1-62v" firstAttribute="top" secondItem="E2U-Te-pUD" secondAttribute="top" constant="8" id="Spb-yT-dE3"/>
@@ -62,6 +80,8 @@
                 <outlet property="authorImage" destination="wZr-bM-LYe" id="BNI-Co-JOo"/>
                 <outlet property="authorUsername" destination="lcU-m1-62v" id="wl2-kL-vhr"/>
                 <outlet property="comment" destination="yEC-WH-9lh" id="M7i-8n-KRt"/>
+                <outlet property="commentUpvoteLabel" destination="0b3-pI-gfT" id="o7f-PK-40d"/>
+                <outlet property="commentUpvoteView" destination="V8J-Gv-c53" id="HvP-Yj-V8N"/>
             </connections>
             <point key="canvasLocation" x="-528.98550724637687" y="87.723214285714278"/>
         </tableViewCell>

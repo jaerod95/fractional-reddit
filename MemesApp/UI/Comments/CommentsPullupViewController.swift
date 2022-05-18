@@ -75,7 +75,7 @@ extension PostCommentsViewController: UITableViewDataSource {
         guard let cell: PostCommentTableViewCell = tableView.dequeueReusableCell(withIdentifier: PostCommentTableViewCell.identifier, for: indexPath) as? PostCommentTableViewCell else {
             return UITableViewCell()
         }
-        cell.configure(comment: viewModel.comments[indexPath.row])
+        cell.configure(commentData: viewModel.comments[indexPath.row])
         return cell
     }
 }
