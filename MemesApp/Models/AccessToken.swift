@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Model for Reddit API Token
 struct AccessToken: Codable {
     var accessToken: String
     var tokenType: String

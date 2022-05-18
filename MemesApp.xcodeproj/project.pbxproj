@@ -25,7 +25,6 @@
 		924B475F2833E722009204E5 /* MemesAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B475E2833E722009204E5 /* MemesAppUITests.swift */; };
 		924B47612833E722009204E5 /* MemesAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B47602833E722009204E5 /* MemesAppUITestsLaunchTests.swift */; };
 		924B476E2833E7BB009204E5 /* PostListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B476D2833E7BB009204E5 /* PostListViewModel.swift */; };
-		924B47712833EC15009204E5 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B47702833EC15009204E5 /* Post.swift */; };
 		924B47732833EC1E009204E5 /* Listing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B47722833EC1E009204E5 /* Listing.swift */; };
 		924B47752833EC48009204E5 /* PostsDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B47742833EC48009204E5 /* PostsDataController.swift */; };
 		924B47772833ECA6009204E5 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B47762833ECA6009204E5 /* PostTableViewCell.swift */; };
@@ -76,7 +75,6 @@
 		924B475E2833E722009204E5 /* MemesAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemesAppUITests.swift; sourceTree = "<group>"; };
 		924B47602833E722009204E5 /* MemesAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemesAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		924B476D2833E7BB009204E5 /* PostListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListViewModel.swift; sourceTree = "<group>"; };
-		924B47702833EC15009204E5 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		924B47722833EC1E009204E5 /* Listing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Listing.swift; sourceTree = "<group>"; };
 		924B47742833EC48009204E5 /* PostsDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsDataController.swift; sourceTree = "<group>"; };
 		924B47762833ECA6009204E5 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
@@ -173,12 +171,12 @@
 		924B473C2833E721009204E5 /* MemesApp */ = {
 			isa = PBXGroup;
 			children = (
+				92F32FFA283492EA0093315E /* DataControllers */,
 				924B47872834046B009204E5 /* UI */,
 				924B47792833ED5C009204E5 /* Extensions */,
 				924B476F2833EBE2009204E5 /* Models */,
 				924B473D2833E721009204E5 /* AppDelegate.swift */,
 				924B473F2833E721009204E5 /* SceneDelegate.swift */,
-				924B47742833EC48009204E5 /* PostsDataController.swift */,
 				924B47462833E722009204E5 /* Assets.xcassets */,
 				92474197283462980076BE60 /* upvote.json */,
 				924B47482833E722009204E5 /* LaunchScreen.storyboard */,
@@ -208,7 +206,6 @@
 			isa = PBXGroup;
 			children = (
 				924B47722833EC1E009204E5 /* Listing.swift */,
-				924B47702833EC15009204E5 /* Post.swift */,
 				9247419C283479630076BE60 /* AccessToken.swift */,
 			);
 			path = Models;
@@ -231,6 +228,14 @@
 				92474184283425CE0076BE60 /* Posts */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		92F32FFA283492EA0093315E /* DataControllers */ = {
+			isa = PBXGroup;
+			children = (
+				924B47742833EC48009204E5 /* PostsDataController.swift */,
+			);
+			path = DataControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -390,7 +395,6 @@
 				924B47402833E721009204E5 /* SceneDelegate.swift in Sources */,
 				924B47732833EC1E009204E5 /* Listing.swift in Sources */,
 				9247418A28342E880076BE60 /* Haptic.swift in Sources */,
-				924B47712833EC15009204E5 /* Post.swift in Sources */,
 				92F2388F283405490063909E /* PostCommentsViewModel.swift in Sources */,
 				924B477B2833ED7A009204E5 /* UITableView+extensions.swift in Sources */,
 				92F238912834057F0063909E /* PostCommentTableViewCell.swift in Sources */,

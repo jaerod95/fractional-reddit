@@ -29,6 +29,7 @@ class PostListViewController: UIViewController {
             }.store(in: &cancellables)
     }
     
+    /// Prepares tableview delegates and default look/feel
     private func configureTableView() {
         self.tableView.register(UINib(nibName: "PostTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: PostTableViewCell.identifier)
         self.tableView.delegate = self
@@ -41,6 +42,7 @@ class PostListViewController: UIViewController {
         self.tableView.refreshControl = refreshControl
     }
     
+    /// Reloads All comments
     @objc private func reloadComments() {
         self.refreshControl.beginRefreshing()
         viewModel.fetchPosts(replacing: true)
@@ -99,6 +101,8 @@ extension PostListViewController: UITableViewDataSourcePrefetching {
 }
 
 extension PostListViewController: UIScrollViewDelegate {
+    
+    /// Used to make scrolling feel more natural.
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         let pageHeight = scrollView.frame.size.height
         
@@ -116,16 +120,16 @@ extension PostListViewController: UIScrollViewDelegate {
             scrollView.setContentOffset(CGPoint(x: 0, y: pageHeight * page), animated: true)
         }
     }
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        
-    }
 }
 
 extension PostListViewController: PostActionsDelegate {
     func upvotePressed(post: PostData) {
         print(post)
+        // TODO: Call Upvote API Endpoint from viewModel
     }
     
+    /// Shares the URL and title of the post
+    /// - Parameter post: post to share
     func sharePressed(post: PostData) {
         guard let url = URL(string: post.url) else {
             let toast = Toast.default(
@@ -149,6 +153,8 @@ extension PostListViewController: PostActionsDelegate {
         }
     }
     
+    /// Shows the comments pullup
+    /// - Parameter post: shows the comments pullup
     func commentsPressed(post: PostData) {
         let vc = PostCommentsViewController.makeFromStoryboard(post: post, delegate: self)
         self.viewModel.presentedViewController = vc
@@ -158,6 +164,7 @@ extension PostListViewController: PostActionsDelegate {
 }
 
 extension PostListViewController: CommentsPullupDelegate {
+    /// Dismisses the comments pullup if it is shown
     func dismissPullup() {
         if let vc = self.viewModel.presentedViewController as? PullUpController {
             Haptic.light()

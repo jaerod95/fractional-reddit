@@ -67,7 +67,7 @@ class PostTableViewCell: UITableViewCell {
         
         postImage.kf.setImage(with: url)
         self.authorImage.kf.setImage(with: URL(string: "https://static.vecteezy.com/system/resources/thumbnails/003/337/584/small/default-avatar-photo-placeholder-profile-icon-vector.jpg"))
-        self.titleLabel.text = post.author
+        self.titleLabel.text = "/u/\(post.author)"
         self.captionLabel.text = post.title
         self.upvoteLabel.text = "\(post.ups)"
         self.commentsLabel.text = "\(post.num_comments)"

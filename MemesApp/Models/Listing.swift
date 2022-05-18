@@ -7,10 +7,12 @@
 
 import Foundation
 
+/// The api type for a reddit listing
 struct Listing: Decodable {
     var data: ListingData
 }
 
+/// The api data of a reddit listing
 struct ListingData: Decodable {
     var after: String?
     var before: String?
@@ -18,6 +20,7 @@ struct ListingData: Decodable {
     var children: [ListingChild]
 }
 
+/// Dynamic reddit child type. Many types can be used in the same children array
 enum ListingChild: Decodable {
     case post(PostData)
     case comment(CommentData)
@@ -30,6 +33,7 @@ enum ListingChild: Decodable {
     }
 }
 
+/// Provies decoding for dynamic data children types.
 extension ListingChild {
     private enum CodingKeys: String, CodingKey {
         case kind, data
@@ -40,7 +44,6 @@ extension ListingChild {
         let kind = try container.decode(ListingChild.kind.self, forKey: .kind)
         switch kind {
         case .t1:
-//            self = .comment(CommentData(id: UUID().uuidString))
             let data = try container.decode(CommentData.self, forKey: .data)
             self = .comment(data)
         case .t3:
@@ -52,6 +55,7 @@ extension ListingChild {
     }
 }
 
+/// Basic Post Child Type
 struct PostData: Codable, Identifiable {
     var id: String
     var url: String
@@ -66,6 +70,7 @@ struct PostData: Codable, Identifiable {
     }
 }
 
+/// Basic Comment Child Type
 struct CommentData: Codable, Identifiable {
     var id: String
     var body: String?
