@@ -9,12 +9,10 @@
 /* Begin PBXBuildFile section */
 		9247418A28342E880076BE60 /* Haptic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9247418928342E880076BE60 /* Haptic.swift */; };
 		9247418C283431010076BE60 /* Comments.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9247418B283431010076BE60 /* Comments.storyboard */; };
-		9247418F2834413A0076BE60 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 9247418E2834413A0076BE60 /* Alamofire */; };
 		92474193283456900076BE60 /* UIView+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92474192283456900076BE60 /* UIView+extensions.swift */; };
 		9247419628345E8B0076BE60 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 9247419528345E8B0076BE60 /* Toast */; };
 		92474198283462980076BE60 /* upvote.json in Resources */ = {isa = PBXBuildFile; fileRef = 92474197283462980076BE60 /* upvote.json */; };
 		9247419B283462C80076BE60 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 9247419A283462C80076BE60 /* Lottie */; };
-		9247419D283479630076BE60 /* AccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9247419C283479630076BE60 /* AccessToken.swift */; };
 		924B473E2833E721009204E5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B473D2833E721009204E5 /* AppDelegate.swift */; };
 		924B47402833E721009204E5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B473F2833E721009204E5 /* SceneDelegate.swift */; };
 		924B47422833E721009204E5 /* PostListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B47412833E721009204E5 /* PostListViewController.swift */; };
@@ -25,13 +23,17 @@
 		924B475F2833E722009204E5 /* MemesAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B475E2833E722009204E5 /* MemesAppUITests.swift */; };
 		924B47612833E722009204E5 /* MemesAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B47602833E722009204E5 /* MemesAppUITestsLaunchTests.swift */; };
 		924B476E2833E7BB009204E5 /* PostListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B476D2833E7BB009204E5 /* PostListViewModel.swift */; };
-		924B47732833EC1E009204E5 /* Listing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B47722833EC1E009204E5 /* Listing.swift */; };
-		924B47752833EC48009204E5 /* PostsDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B47742833EC48009204E5 /* PostsDataController.swift */; };
+		924B47732833EC1E009204E5 /* RedditListing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B47722833EC1E009204E5 /* RedditListing.swift */; };
+		924B47752833EC48009204E5 /* RedditAPIDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B47742833EC48009204E5 /* RedditAPIDataController.swift */; };
 		924B47772833ECA6009204E5 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B47762833ECA6009204E5 /* PostTableViewCell.swift */; };
 		924B477B2833ED7A009204E5 /* UITableView+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B477A2833ED7A009204E5 /* UITableView+extensions.swift */; };
 		924B477D2833EF72009204E5 /* PostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 924B477C2833EF72009204E5 /* PostTableViewCell.xib */; };
 		924B47832833F2A5009204E5 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 924B47822833F2A5009204E5 /* Kingfisher */; };
 		924B478628340285009204E5 /* PullUpController in Frameworks */ = {isa = PBXBuildFile; productRef = 924B478528340285009204E5 /* PullUpController */; };
+		92D905F1283C9C59009ABA3E /* RedditLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D905F0283C9C59009ABA3E /* RedditLink.swift */; };
+		92D905F3283CA0ED009ABA3E /* RedditComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D905F2283CA0ED009ABA3E /* RedditComment.swift */; };
+		92D905F5283CA4BC009ABA3E /* APIDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D905F4283CA4BC009ABA3E /* APIDataController.swift */; };
+		92D905F8283CA613009ABA3E /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 92D905F7283CA613009ABA3E /* Alamofire */; };
 		92F2388D283404920063909E /* CommentsPullupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F2388C283404920063909E /* CommentsPullupViewController.swift */; };
 		92F2388F283405490063909E /* PostCommentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F2388E283405490063909E /* PostCommentsViewModel.swift */; };
 		92F238912834057F0063909E /* PostCommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F238902834057F0063909E /* PostCommentTableViewCell.swift */; };
@@ -60,7 +62,6 @@
 		9247418B283431010076BE60 /* Comments.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Comments.storyboard; sourceTree = "<group>"; };
 		92474192283456900076BE60 /* UIView+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+extensions.swift"; sourceTree = "<group>"; };
 		92474197283462980076BE60 /* upvote.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = upvote.json; sourceTree = "<group>"; };
-		9247419C283479630076BE60 /* AccessToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessToken.swift; sourceTree = "<group>"; };
 		924B473A2833E721009204E5 /* MemesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		924B473D2833E721009204E5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		924B473F2833E721009204E5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -75,11 +76,14 @@
 		924B475E2833E722009204E5 /* MemesAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemesAppUITests.swift; sourceTree = "<group>"; };
 		924B47602833E722009204E5 /* MemesAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemesAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		924B476D2833E7BB009204E5 /* PostListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListViewModel.swift; sourceTree = "<group>"; };
-		924B47722833EC1E009204E5 /* Listing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Listing.swift; sourceTree = "<group>"; };
-		924B47742833EC48009204E5 /* PostsDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsDataController.swift; sourceTree = "<group>"; };
+		924B47722833EC1E009204E5 /* RedditListing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RedditListing.swift; sourceTree = "<group>"; };
+		924B47742833EC48009204E5 /* RedditAPIDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedditAPIDataController.swift; sourceTree = "<group>"; };
 		924B47762833ECA6009204E5 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		924B477A2833ED7A009204E5 /* UITableView+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+extensions.swift"; sourceTree = "<group>"; };
 		924B477C2833EF72009204E5 /* PostTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostTableViewCell.xib; sourceTree = "<group>"; };
+		92D905F0283C9C59009ABA3E /* RedditLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedditLink.swift; sourceTree = "<group>"; };
+		92D905F2283CA0ED009ABA3E /* RedditComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedditComment.swift; sourceTree = "<group>"; };
+		92D905F4283CA4BC009ABA3E /* APIDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIDataController.swift; sourceTree = "<group>"; };
 		92F2388C283404920063909E /* CommentsPullupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsPullupViewController.swift; sourceTree = "<group>"; };
 		92F2388E283405490063909E /* PostCommentsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCommentsViewModel.swift; sourceTree = "<group>"; };
 		92F238902834057F0063909E /* PostCommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCommentTableViewCell.swift; sourceTree = "<group>"; };
@@ -91,9 +95,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92D905F8283CA613009ABA3E /* Alamofire in Frameworks */,
 				9247419B283462C80076BE60 /* Lottie in Frameworks */,
 				9247419628345E8B0076BE60 /* Toast in Frameworks */,
-				9247418F2834413A0076BE60 /* Alamofire in Frameworks */,
 				924B47832833F2A5009204E5 /* Kingfisher in Frameworks */,
 				924B478628340285009204E5 /* PullUpController in Frameworks */,
 			);
@@ -205,8 +209,9 @@
 		924B476F2833EBE2009204E5 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				924B47722833EC1E009204E5 /* Listing.swift */,
-				9247419C283479630076BE60 /* AccessToken.swift */,
+				924B47722833EC1E009204E5 /* RedditListing.swift */,
+				92D905F0283C9C59009ABA3E /* RedditLink.swift */,
+				92D905F2283CA0ED009ABA3E /* RedditComment.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -233,7 +238,8 @@
 		92F32FFA283492EA0093315E /* DataControllers */ = {
 			isa = PBXGroup;
 			children = (
-				924B47742833EC48009204E5 /* PostsDataController.swift */,
+				924B47742833EC48009204E5 /* RedditAPIDataController.swift */,
+				92D905F4283CA4BC009ABA3E /* APIDataController.swift */,
 			);
 			path = DataControllers;
 			sourceTree = "<group>";
@@ -257,9 +263,9 @@
 			packageProductDependencies = (
 				924B47822833F2A5009204E5 /* Kingfisher */,
 				924B478528340285009204E5 /* PullUpController */,
-				9247418E2834413A0076BE60 /* Alamofire */,
 				9247419528345E8B0076BE60 /* Toast */,
 				9247419A283462C80076BE60 /* Lottie */,
+				92D905F7283CA613009ABA3E /* Alamofire */,
 			);
 			productName = MemesApp;
 			productReference = 924B473A2833E721009204E5 /* MemesApp.app */;
@@ -336,9 +342,9 @@
 			packageReferences = (
 				924B47812833F2A5009204E5 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				924B478428340285009204E5 /* XCRemoteSwiftPackageReference "PullUpController" */,
-				9247418D2834413A0076BE60 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				9247419428345E8B0076BE60 /* XCRemoteSwiftPackageReference "toast-swift" */,
 				92474199283462C80076BE60 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				92D905F6283CA613009ABA3E /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 924B473B2833E721009204E5 /* Products */;
 			projectDirPath = "";
@@ -393,14 +399,16 @@
 				924B473E2833E721009204E5 /* AppDelegate.swift in Sources */,
 				924B47772833ECA6009204E5 /* PostTableViewCell.swift in Sources */,
 				924B47402833E721009204E5 /* SceneDelegate.swift in Sources */,
-				924B47732833EC1E009204E5 /* Listing.swift in Sources */,
+				924B47732833EC1E009204E5 /* RedditListing.swift in Sources */,
 				9247418A28342E880076BE60 /* Haptic.swift in Sources */,
 				92F2388F283405490063909E /* PostCommentsViewModel.swift in Sources */,
+				92D905F1283C9C59009ABA3E /* RedditLink.swift in Sources */,
+				92D905F5283CA4BC009ABA3E /* APIDataController.swift in Sources */,
 				924B477B2833ED7A009204E5 /* UITableView+extensions.swift in Sources */,
 				92F238912834057F0063909E /* PostCommentTableViewCell.swift in Sources */,
 				92F2388D283404920063909E /* CommentsPullupViewController.swift in Sources */,
-				924B47752833EC48009204E5 /* PostsDataController.swift in Sources */,
-				9247419D283479630076BE60 /* AccessToken.swift in Sources */,
+				92D905F3283CA0ED009ABA3E /* RedditComment.swift in Sources */,
+				924B47752833EC48009204E5 /* RedditAPIDataController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -746,14 +754,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		9247418D2834413A0076BE60 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Alamofire/Alamofire";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
-			};
-		};
 		9247419428345E8B0076BE60 /* XCRemoteSwiftPackageReference "toast-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/BastiaanJansen/toast-swift";
@@ -786,14 +786,17 @@
 				minimumVersion = 0.8.0;
 			};
 		};
+		92D905F6283CA613009ABA3E /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		9247418E2834413A0076BE60 /* Alamofire */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9247418D2834413A0076BE60 /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
-		};
 		9247419528345E8B0076BE60 /* Toast */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 9247419428345E8B0076BE60 /* XCRemoteSwiftPackageReference "toast-swift" */;
@@ -813,6 +816,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 924B478428340285009204E5 /* XCRemoteSwiftPackageReference "PullUpController" */;
 			productName = PullUpController;
+		};
+		92D905F7283CA613009ABA3E /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 92D905F6283CA613009ABA3E /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -18,14 +18,14 @@ class PostCommentTableViewCell: UITableViewCell {
     @IBOutlet weak var commentUpvoteLabel: UILabel!
     
     private var actionsDelegate: PostActionsDelegate?
-    private var commentData: CommentData?
+    private var commentData: RedditComment?
     
     
     override func prepareForReuse() {
         super.prepareForReuse()
     }
     
-    func configure(commentData: CommentData) {
+    func configure(commentData: RedditComment) {
         self.commentData = commentData
         // Configure author
         self.commentUpvoteView.animation = Animation.named("upvote", bundle: Bundle.main, subdirectory: nil, animationCache: nil)

@@ -13,7 +13,7 @@ import Toast
 
 class PostCommentsViewController: PullUpController {
     
-    static func makeFromStoryboard(post: PostData, delegate: CommentsPullupDelegate) -> PostCommentsViewController {
+    static func makeFromStoryboard(post: RedditLink, delegate: CommentsPullupDelegate) -> PostCommentsViewController {
         let commentsViewController = UIStoryboard(name: "Comments", bundle: nil).instantiateInitialViewController() as? PostCommentsViewController ?? PostCommentsViewController()
         commentsViewController.viewModel.post = post
         commentsViewController.delegate = delegate
@@ -33,7 +33,7 @@ class PostCommentsViewController: PullUpController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.titleLabel.text = "\(self.viewModel.post?.num_comments ?? 0) Comments"
+        self.titleLabel.text = "\(self.viewModel.post?.numberOfComments ?? 0) Comments"
         self.setupTableView()
         
         

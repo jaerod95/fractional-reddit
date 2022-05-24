@@ -140,14 +140,14 @@ extension PostListViewController: UIScrollViewDelegate {
 }
 
 extension PostListViewController: PostActionsDelegate {
-    func upvotePressed(post: PostData) {
+    func upvotePressed(post: RedditLink) {
         print(post)
         // TODO: Call Upvote API Endpoint from viewModel
     }
     
     /// Shares the URL and title of the post
     /// - Parameter post: post to share
-    func sharePressed(post: PostData) {
+    func sharePressed(post: RedditLink) {
         guard let url = URL(string: post.url) else {
             showErrorToast(title: "Something went wrong", subtitle: "try again later")
             return
@@ -167,7 +167,7 @@ extension PostListViewController: PostActionsDelegate {
     
     /// Shows the comments pullup
     /// - Parameter post: shows the comments pullup
-    func commentsPressed(post: PostData) {
+    func commentsPressed(post: RedditLink) {
         let vc = PostCommentsViewController.makeFromStoryboard(post: post, delegate: self)
         self.viewModel.presentedViewController = vc
         Haptic.light()

@@ -28,7 +28,7 @@ class PostTableViewCell: UITableViewCell {
     
     
     private var actionsDelegate: PostActionsDelegate?
-    private var post: PostData?
+    private var post: RedditLink?
     
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -36,7 +36,7 @@ class PostTableViewCell: UITableViewCell {
         self.upvoteView.currentFrame = 0
     }
     
-    func configure(post: PostData, actionsDelegate: PostActionsDelegate) {
+    func configure(post: RedditLink, actionsDelegate: PostActionsDelegate) {
         self.actionsDelegate = actionsDelegate
         self.post = post
         
@@ -70,7 +70,7 @@ class PostTableViewCell: UITableViewCell {
         self.titleLabel.text = "/u/\(post.author)"
         self.captionLabel.text = post.title
         self.upvoteLabel.text = "\(post.ups)"
-        self.commentsLabel.text = "\(post.num_comments)"
+        self.commentsLabel.text = "\(post.numberOfComments)"
         self.backgroundColor = .black
     }
     
@@ -110,7 +110,7 @@ class PostTableViewCell: UITableViewCell {
 }
 
 protocol PostActionsDelegate {
-    func upvotePressed(post: PostData)
-    func commentsPressed(post: PostData)
-    func sharePressed(post: PostData)
+    func upvotePressed(post: RedditLink)
+    func commentsPressed(post: RedditLink)
+    func sharePressed(post: RedditLink)
 }

@@ -9,18 +9,18 @@ import Foundation
 import Combine
 
 protocol PostCommentsViewModelProtocol: ObservableObject {
-    var comments: [CommentData] { get }
-    var post: PostData? { get }
+    var comments: [RedditComment] { get }
+    var post: RedditLink? { get }
     var errorMessages: PassthroughSubject<String, Never> { get }
     var hasMoreComments: Bool { get }
     func fetchComments(replacing: Bool)
 }
 
 class PostCommentsViewModel: PostCommentsViewModelProtocol {
-    @Published var comments: [CommentData] = []
+    @Published var comments: [RedditComment] = []
     @Published var errorMessages: PassthroughSubject<String, Never> = PassthroughSubject()
     /// Selected Post
-    var post: PostData?
+    var post: RedditLink?
     /// Whether more comments can be fetched
     var hasMoreComments: Bool = true
     /// True if we are making a network call
@@ -28,7 +28,7 @@ class PostCommentsViewModel: PostCommentsViewModelProtocol {
     /// Store Combine cancellables
     private var cancellables: Set<AnyCancellable> = Set()
     /// Data Controller for API access
-    private var postsDataController: RedditDataControllerProtocol = RedditDataController()
+    private var postsDataController: RedditAPIDataControllerProtocol = RedditAPIDataController()
     
     init() {}
     
@@ -45,7 +45,7 @@ class PostCommentsViewModel: PostCommentsViewModelProtocol {
                 after = lastComment.fullName
             }
         }
-        postsDataController.getCommentsForPost(postID: self.post?.id ?? "", after: after).sink { completion in
+        postsDataController.getCommentsForLink(linkID: self.post?.id ?? "", after: after).sink { completion in
             switch completion {
             case .failure:
                 self.errorMessages.send("Unable to grab comments, try again")

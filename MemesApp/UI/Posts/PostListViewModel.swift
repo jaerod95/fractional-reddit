@@ -10,7 +10,7 @@ import UIKit
 import Combine
 
 protocol PostListViewModelProtocol: ObservableObject {
-    var posts: [PostData] { get }
+    var posts: [RedditLink] { get }
     var hasMorePosts: Bool { get }
     var errorMessages: PassthroughSubject<String, Never> { get }
     func fetchPosts(replacing: Bool)
@@ -18,10 +18,10 @@ protocol PostListViewModelProtocol: ObservableObject {
 
 class PostListViewModel: ObservableObject, PostListViewModelProtocol {
     private var cancellables: Set<AnyCancellable> = Set()
-    private var postsDataController: RedditDataControllerProtocol = RedditDataController()
+    private var postsDataController: RedditAPIDataControllerProtocol = RedditAPIDataController()
     private var isFetching: Bool = false
     @Published var errorMessages: PassthroughSubject<String, Never> = PassthroughSubject()
-    @Published var posts: [PostData] = []
+    @Published var posts: [RedditLink] = []
     var hasMorePosts: Bool = true
     var presentedViewController: UIViewController?
     
@@ -40,7 +40,7 @@ class PostListViewModel: ObservableObject, PostListViewModelProtocol {
                 after = lastPost.fullName
             }
         }
-        postsDataController.getPosts(after: after).sink { completion in
+        postsDataController.getLinks(after: after).sink { completion in
             self.isFetching = false
             switch completion {
             case .failure:
