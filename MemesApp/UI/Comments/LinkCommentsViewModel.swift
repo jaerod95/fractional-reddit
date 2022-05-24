@@ -1,5 +1,5 @@
 //
-//  PostCommentsViewModel.swift
+//  LinkCommentsViewModel.swift
 //  MemesApp
 //
 //  Created by Jason Rodriguez on 5/17/22.
@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-protocol PostCommentsViewModelProtocol: ObservableObject {
+protocol LinkCommentsViewModelProtocol: ObservableObject {
     var comments: [RedditComment] { get }
     var post: RedditLink? { get }
     var errorMessages: PassthroughSubject<String, Never> { get }
@@ -16,7 +16,7 @@ protocol PostCommentsViewModelProtocol: ObservableObject {
     func fetchComments(replacing: Bool)
 }
 
-class PostCommentsViewModel: PostCommentsViewModelProtocol {
+class LinkCommentsViewModel: LinkCommentsViewModelProtocol {
     @Published var comments: [RedditComment] = []
     @Published var errorMessages: PassthroughSubject<String, Never> = PassthroughSubject()
     /// Selected Post

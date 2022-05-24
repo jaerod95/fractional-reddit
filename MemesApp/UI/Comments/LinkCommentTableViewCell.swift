@@ -10,14 +10,14 @@ import UIKit
 import Kingfisher
 import Lottie
 
-class PostCommentTableViewCell: UITableViewCell {
+class LinkCommentTableViewCell: UITableViewCell {
     @IBOutlet private var authorImage: UIImageView!
     @IBOutlet private var authorUsername: UILabel!
     @IBOutlet private var comment: UILabel!
     @IBOutlet weak var commentUpvoteView: AnimationView!
     @IBOutlet weak var commentUpvoteLabel: UILabel!
     
-    private var actionsDelegate: PostActionsDelegate?
+    private var actionsDelegate: LinkActionsDelegate?
     private var commentData: RedditComment?
     
     

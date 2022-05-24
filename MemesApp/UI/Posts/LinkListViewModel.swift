@@ -9,14 +9,14 @@ import Foundation
 import UIKit
 import Combine
 
-protocol PostListViewModelProtocol: ObservableObject {
+protocol LinkListViewModelProtocol: ObservableObject {
     var posts: [RedditLink] { get }
     var hasMorePosts: Bool { get }
     var errorMessages: PassthroughSubject<String, Never> { get }
     func fetchPosts(replacing: Bool)
 }
 
-class PostListViewModel: ObservableObject, PostListViewModelProtocol {
+class LinkListViewModel: ObservableObject, LinkListViewModelProtocol {
     private var cancellables: Set<AnyCancellable> = Set()
     private var postsDataController: RedditAPIDataControllerProtocol = RedditAPIDataController()
     private var isFetching: Bool = false

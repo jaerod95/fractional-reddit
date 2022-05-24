@@ -1,5 +1,5 @@
 //
-//  PostsDataController.swift
+//  RedditAPIDataController.swift
 //  MemesApp
 //
 //  Created by Jason Rodriguez on 5/17/22.
@@ -16,7 +16,7 @@ protocol RedditAPIDataControllerProtocol {
     func getLinks(after: String?) -> AnyPublisher<[RedditLink], APIDataController.APIError>
     /// Fetches comments for Link
     /// - Parameters:
-    ///   - postID: Post to Fetch Comments for
+    ///   - linkID: Link to Fetch Comments for
     ///   - after: the last comment you should fetch after
     /// - Returns: Publisher with array of comment Data
     func getCommentsForLink(linkID: String, after: String?) -> AnyPublisher<[RedditComment], APIDataController.APIError>
@@ -51,9 +51,9 @@ class RedditAPIDataController: APIDataController, RedditAPIDataControllerProtoco
             .tryMap { listing in
                 return listing.data.children.compactMap {
                     switch ($0) {
-                    case .link(let postData):
-                        if postData.url.range(of: "(.png|.jpg|.gif)$", options: .regularExpression) != nil {
-                            return postData
+                    case .link(let linkData):
+                        if linkData.url.range(of: "(.png|.jpg|.gif)$", options: .regularExpression) != nil {
+                            return linkData
                         }
                     default:
                         break
@@ -67,7 +67,7 @@ class RedditAPIDataController: APIDataController, RedditAPIDataControllerProtoco
     
     /// Fetches comments for Link
     /// - Parameters:
-    ///   - postID: Post to Fetch Comments for
+    ///   - linkID: Link to Fetch Comments for
     ///   - after: the last comment you should fetch after
     /// - Returns: Publisher with array of comment Data
     func getCommentsForLink(linkID: String, after: String? = nil) -> AnyPublisher<[RedditComment], APIError> {
@@ -100,7 +100,7 @@ class RedditAPIDataController: APIDataController, RedditAPIDataControllerProtoco
     }
     
     /// Upvotes a particular Link
-    /// - Parameter postFullName: fullName of the link to upvote
+    /// - Parameter linkFullName: fullName of the link to upvote
     /// - Returns: Publisher with bool of whether it was a success or not.
     func upvoteLink(linkFullName: String) -> AnyPublisher<Bool, APIError> {
         return getAuthToken()

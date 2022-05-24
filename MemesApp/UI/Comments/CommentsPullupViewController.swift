@@ -11,11 +11,11 @@ import UIKit
 import Combine
 import Toast
 
-class PostCommentsViewController: PullUpController {
+class LinkCommentsViewController: PullUpController {
     
-    static func makeFromStoryboard(post: RedditLink, delegate: CommentsPullupDelegate) -> PostCommentsViewController {
-        let commentsViewController = UIStoryboard(name: "Comments", bundle: nil).instantiateInitialViewController() as? PostCommentsViewController ?? PostCommentsViewController()
-        commentsViewController.viewModel.post = post
+    static func makeFromStoryboard(link: RedditLink, delegate: CommentsPullupDelegate) -> LinkCommentsViewController {
+        let commentsViewController = UIStoryboard(name: "Comments", bundle: nil).instantiateInitialViewController() as? LinkCommentsViewController ?? LinkCommentsViewController()
+        commentsViewController.viewModel.post = link
         commentsViewController.delegate = delegate
         return commentsViewController
     }
@@ -29,7 +29,7 @@ class PostCommentsViewController: PullUpController {
     private var cancellables: Set<AnyCancellable> = Set()
     private var delegate: CommentsPullupDelegate?
     private let refreshControl = UIRefreshControl()
-    var viewModel: PostCommentsViewModel = PostCommentsViewModel()
+    var viewModel: LinkCommentsViewModel = LinkCommentsViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,7 +69,7 @@ class PostCommentsViewController: PullUpController {
     }
     
     private func setupTableView() {
-        tableView.register(UINib(nibName: "PostCommentTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: PostCommentTableViewCell.identifier)
+        tableView.register(UINib(nibName: "PostCommentTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: LinkCommentTableViewCell.identifier)
         self.tableView.dataSource = self
         self.tableView.prefetchDataSource = self
         self.tableView.allowsSelection = false
@@ -86,13 +86,15 @@ class PostCommentsViewController: PullUpController {
     }
 }
 
-extension PostCommentsViewController: UITableViewDataSource {
+// MARK: UITableViewDataSource Conformance
+
+extension LinkCommentsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.comments.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell: PostCommentTableViewCell = tableView.dequeueReusableCell(withIdentifier: PostCommentTableViewCell.identifier, for: indexPath) as? PostCommentTableViewCell else {
+        guard let cell: LinkCommentTableViewCell = tableView.dequeueReusableCell(withIdentifier: LinkCommentTableViewCell.identifier, for: indexPath) as? LinkCommentTableViewCell else {
             return UITableViewCell()
         }
         cell.configure(commentData: viewModel.comments[indexPath.row])
@@ -100,7 +102,9 @@ extension PostCommentsViewController: UITableViewDataSource {
     }
 }
 
-extension PostCommentsViewController: UITableViewDataSourcePrefetching {
+// MARK: UITableViewDataSourcePrefetching Conformance
+
+extension LinkCommentsViewController: UITableViewDataSourcePrefetching {
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         for indexPath in indexPaths {
             if indexPath.row > viewModel.comments.count - 20 && viewModel.hasMoreComments {
@@ -109,6 +113,8 @@ extension PostCommentsViewController: UITableViewDataSourcePrefetching {
         }
     }
 }
+
+// MARK: CommentsPullupDelegate Implementation
 
 protocol CommentsPullupDelegate {
     func dismissPullup()

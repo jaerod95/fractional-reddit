@@ -10,7 +10,10 @@ import UIKit
 import Kingfisher
 import Lottie
 
-class PostTableViewCell: UITableViewCell {
+// TODO: Add loading indicator
+// TODO: Better reloading if failed handling
+
+class LinkTableViewCell: UITableViewCell {
     
     @IBOutlet weak var upvoteView: AnimationView!
     @IBOutlet private var postImage: AnimatedImageView!
@@ -27,8 +30,8 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet weak var shareStackView: UIStackView!
     
     
-    private var actionsDelegate: PostActionsDelegate?
-    private var post: RedditLink?
+    private var actionsDelegate: LinkActionsDelegate?
+    private var link: RedditLink?
     
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -36,9 +39,9 @@ class PostTableViewCell: UITableViewCell {
         self.upvoteView.currentFrame = 0
     }
     
-    func configure(post: RedditLink, actionsDelegate: PostActionsDelegate) {
+    func configure(link: RedditLink, actionsDelegate: LinkActionsDelegate) {
         self.actionsDelegate = actionsDelegate
-        self.post = post
+        self.link = link
         
         self.selectionStyle = .none
         self.authorImage.layer.cornerRadius = 24
@@ -61,16 +64,16 @@ class PostTableViewCell: UITableViewCell {
         
         // Setup Post Specific Data
         
-        guard let url: URL = URL(string: post.url) else {
+        guard let url: URL = URL(string: link.url) else {
             return
         }
         
         postImage.kf.setImage(with: url)
         self.authorImage.kf.setImage(with: URL(string: "https://static.vecteezy.com/system/resources/thumbnails/003/337/584/small/default-avatar-photo-placeholder-profile-icon-vector.jpg"))
-        self.titleLabel.text = "/u/\(post.author)"
-        self.captionLabel.text = post.title
-        self.upvoteLabel.text = "\(post.ups)"
-        self.commentsLabel.text = "\(post.numberOfComments)"
+        self.titleLabel.text = "/u/\(link.author)"
+        self.captionLabel.text = link.title
+        self.upvoteLabel.text = "\(link.ups)"
+        self.commentsLabel.text = "\(link.numberOfComments)"
         self.backgroundColor = .black
     }
     
@@ -88,29 +91,31 @@ class PostTableViewCell: UITableViewCell {
             self.upvoteView.play(toFrame: 34)
         }
         
-        guard let postData = self.post else {
+        guard let postData = self.link else {
             return
         }
-        self.actionsDelegate?.upvotePressed(post: postData)
+        self.actionsDelegate?.upvotePressed(link: postData)
     }
     
     @objc func commentsPressed() {
-        guard let postData = self.post else {
+        guard let postData = self.link else {
             return
         }
-        self.actionsDelegate?.commentsPressed(post: postData)
+        self.actionsDelegate?.commentsPressed(link: postData)
     }
     
     @objc func sharePressed() {
-        guard let postData = self.post else {
+        guard let postData = self.link else {
             return
         }
-        self.actionsDelegate?.sharePressed(post: postData)
+        self.actionsDelegate?.sharePressed(link: postData)
     }
 }
 
-protocol PostActionsDelegate {
-    func upvotePressed(post: RedditLink)
-    func commentsPressed(post: RedditLink)
-    func sharePressed(post: RedditLink)
+// MARK: LinkActionsDelegate Declaration
+
+protocol LinkActionsDelegate {
+    func upvotePressed(link: RedditLink)
+    func commentsPressed(link: RedditLink)
+    func sharePressed(link: RedditLink)
 }

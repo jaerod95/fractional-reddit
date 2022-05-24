@@ -10,11 +10,11 @@ import Combine
 import PullUpController
 import Toast
 
-class PostListViewController: UIViewController {
+class LinkListViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    private var viewModel: PostListViewModel = PostListViewModel()
+    private var viewModel: LinkListViewModel = LinkListViewModel()
     private var cancellables: Set<AnyCancellable> = Set()
     private var currentPage: Int = 0
     private let refreshControl = UIRefreshControl()
@@ -36,7 +36,7 @@ class PostListViewController: UIViewController {
     
     /// Prepares tableview delegates and default look/feel
     private func configureTableView() {
-        self.tableView.register(UINib(nibName: "PostTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: PostTableViewCell.identifier)
+        self.tableView.register(UINib(nibName: "PostTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: LinkTableViewCell.identifier)
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.prefetchDataSource = self
@@ -81,7 +81,9 @@ class PostListViewController: UIViewController {
     }
 }
 
-extension PostListViewController: UITableViewDelegate {
+// MARK: UITableViewDelegate Conformance
+
+extension LinkListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return self.tableView.frame.size.height
     }
@@ -91,21 +93,25 @@ extension PostListViewController: UITableViewDelegate {
     }
 }
 
-extension PostListViewController: UITableViewDataSource {
+// MARK: UITableViewDataSource Conformance
+
+extension LinkListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.posts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell: PostTableViewCell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as? PostTableViewCell else {
+        guard let cell: LinkTableViewCell = tableView.dequeueReusableCell(withIdentifier: LinkTableViewCell.identifier, for: indexPath) as? LinkTableViewCell else {
             return UITableViewCell()
         }
-        cell.configure(post: viewModel.posts[indexPath.row], actionsDelegate: self)
+        cell.configure(link: viewModel.posts[indexPath.row], actionsDelegate: self)
         return cell
     }
 }
 
-extension PostListViewController: UITableViewDataSourcePrefetching {
+// MARK: UITableViewDataSourcePrefetching Conformance
+
+extension LinkListViewController: UITableViewDataSourcePrefetching {
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         for indexPath in indexPaths {
             if indexPath.row > viewModel.posts.count - 20 && viewModel.hasMorePosts {
@@ -117,7 +123,9 @@ extension PostListViewController: UITableViewDataSourcePrefetching {
     
 }
 
-extension PostListViewController: UIScrollViewDelegate {
+// MARK: UIScrollViewDelegate Conformance
+
+extension LinkListViewController: UIScrollViewDelegate {
     
     /// Used to make scrolling feel more natural.
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
@@ -139,20 +147,22 @@ extension PostListViewController: UIScrollViewDelegate {
     }
 }
 
-extension PostListViewController: PostActionsDelegate {
-    func upvotePressed(post: RedditLink) {
-        print(post)
+// MARK: LinkActionsDelegate Conformance
+
+extension LinkListViewController: LinkActionsDelegate {
+    func upvotePressed(link: RedditLink) {
+        print(link)
         // TODO: Call Upvote API Endpoint from viewModel
     }
     
     /// Shares the URL and title of the post
     /// - Parameter post: post to share
-    func sharePressed(post: RedditLink) {
-        guard let url = URL(string: post.url) else {
+    func sharePressed(link: RedditLink) {
+        guard let url = URL(string: link.url) else {
             showErrorToast(title: "Something went wrong", subtitle: "try again later")
             return
         }
-        let sharableItems = [post.title, url] as [Any]
+        let sharableItems = [link.title, url] as [Any]
         let ac = UIActivityViewController(activityItems: sharableItems, applicationActivities: nil)
         ac.completionWithItemsHandler = { activity, success, items, error in
             if success {
@@ -167,15 +177,17 @@ extension PostListViewController: PostActionsDelegate {
     
     /// Shows the comments pullup
     /// - Parameter post: shows the comments pullup
-    func commentsPressed(post: RedditLink) {
-        let vc = PostCommentsViewController.makeFromStoryboard(post: post, delegate: self)
+    func commentsPressed(link: RedditLink) {
+        let vc = LinkCommentsViewController.makeFromStoryboard(link: link, delegate: self)
         self.viewModel.presentedViewController = vc
         Haptic.light()
         self.addPullUpController(vc, initialStickyPointOffset: 500, animated: true)
     }
 }
 
-extension PostListViewController: CommentsPullupDelegate {
+// MARK: UITableViewDataSource Implementation
+
+extension LinkListViewController: CommentsPullupDelegate {
     /// Dismisses the comments pullup if it is shown
     func dismissPullup() {
         if let vc = self.viewModel.presentedViewController as? PullUpController {
