@@ -22,11 +22,16 @@ class PostListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
+        // Sync posts
         self.viewModel.$posts
             .receive(on: DispatchQueue.main)
-            .sink { posts in
-                self.tableView.reloadData()
+            .sink { [weak self] posts in
+                self?.tableView.reloadData()
             }.store(in: &cancellables)
+        // Sync Errors
+        self.viewModel.errorMessages.sink { [weak self] message in
+            self?.showErrorToast(title: message)
+        }.store(in: &cancellables)
     }
     
     /// Prepares tableview delegates and default look/feel
@@ -60,6 +65,18 @@ class PostListViewController: UIViewController {
     func reloadTableView() {
         DispatchQueue.main.async {
             self.tableView.reloadData()
+        }
+    }
+    
+    private func showErrorToast(title: String, subtitle: String? = nil) {
+        DispatchQueue.main.async {
+            let toast = Toast.default(
+                image: UIImage(systemName: "exclamationmark.triangle.fill") ?? UIImage(),
+                title: title,
+                subtitle: subtitle
+            )
+            
+            toast.show()
         }
     }
 }
@@ -132,12 +149,7 @@ extension PostListViewController: PostActionsDelegate {
     /// - Parameter post: post to share
     func sharePressed(post: PostData) {
         guard let url = URL(string: post.url) else {
-            let toast = Toast.default(
-                image: UIImage(systemName: "exclamationmark.triangle.fill") ?? UIImage(),
-                title: "Something went wrong",
-                subtitle: "try again later"
-            )
-            toast.show()
+            showErrorToast(title: "Something went wrong", subtitle: "try again later")
             return
         }
         let sharableItems = [post.title, url] as [Any]

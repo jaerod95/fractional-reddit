@@ -9,6 +9,7 @@ import Foundation
 import PullUpController
 import UIKit
 import Combine
+import Toast
 
 class PostCommentsViewController: PullUpController {
     
@@ -37,15 +38,34 @@ class PostCommentsViewController: PullUpController {
         
         
         self.viewModel.fetchComments()
+        // sync comments
         self.viewModel.$comments
             .receive(on: DispatchQueue.main)
-            .sink { comments in
-                self.refreshControl.endRefreshing()
-                self.tableView.reloadData()
+            .sink { [weak self] comments in
+                self?.refreshControl.endRefreshing()
+                self?.tableView.reloadData()
                 
             }.store(in: &cancellables)
+        
+        // Sync Errors
+        self.viewModel.errorMessages.sink { [weak self] message in
+            self?.showErrorToast(title: message)
+        }.store(in: &cancellables)
+        
         self.view.roundCorners(corners: [.topLeft, .topRight], radius: 8)
         self.view.clipsToBounds = true
+    }
+    
+    private func showErrorToast(title: String, subtitle: String? = nil) {
+        DispatchQueue.main.async {
+            let toast = Toast.default(
+                image: UIImage(systemName: "exclamationmark.triangle.fill") ?? UIImage(),
+                title: title,
+                subtitle: subtitle
+            )
+            
+            toast.show()
+        }
     }
     
     private func setupTableView() {

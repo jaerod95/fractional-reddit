@@ -12,13 +12,15 @@ import Combine
 protocol PostListViewModelProtocol: ObservableObject {
     var posts: [PostData] { get }
     var hasMorePosts: Bool { get }
+    var errorMessages: PassthroughSubject<String, Never> { get }
     func fetchPosts(replacing: Bool)
 }
 
 class PostListViewModel: ObservableObject, PostListViewModelProtocol {
     private var cancellables: Set<AnyCancellable> = Set()
-    private var postsDataController: PostsDataControllerProtocol = PostsDataController()
+    private var postsDataController: RedditDataControllerProtocol = RedditDataController()
     private var isFetching: Bool = false
+    @Published var errorMessages: PassthroughSubject<String, Never> = PassthroughSubject()
     @Published var posts: [PostData] = []
     var hasMorePosts: Bool = true
     var presentedViewController: UIViewController?
@@ -40,6 +42,12 @@ class PostListViewModel: ObservableObject, PostListViewModelProtocol {
         }
         postsDataController.getPosts(after: after).sink { completion in
             self.isFetching = false
+            switch completion {
+            case .failure:
+                self.errorMessages.send("Unable to grab comments, try again")
+            default:
+                break
+            }
         } receiveValue: { newPosts in
             if replacing {
                 self.posts = newPosts

@@ -11,12 +11,14 @@ import Combine
 protocol PostCommentsViewModelProtocol: ObservableObject {
     var comments: [CommentData] { get }
     var post: PostData? { get }
+    var errorMessages: PassthroughSubject<String, Never> { get }
     var hasMoreComments: Bool { get }
     func fetchComments(replacing: Bool)
 }
 
 class PostCommentsViewModel: PostCommentsViewModelProtocol {
     @Published var comments: [CommentData] = []
+    @Published var errorMessages: PassthroughSubject<String, Never> = PassthroughSubject()
     /// Selected Post
     var post: PostData?
     /// Whether more comments can be fetched
@@ -26,7 +28,7 @@ class PostCommentsViewModel: PostCommentsViewModelProtocol {
     /// Store Combine cancellables
     private var cancellables: Set<AnyCancellable> = Set()
     /// Data Controller for API access
-    private var postsDataController: PostsDataControllerProtocol = PostsDataController()
+    private var postsDataController: RedditDataControllerProtocol = RedditDataController()
     
     init() {}
     
@@ -44,7 +46,12 @@ class PostCommentsViewModel: PostCommentsViewModelProtocol {
             }
         }
         postsDataController.getCommentsForPost(postID: self.post?.id ?? "", after: after).sink { completion in
-            // self.isFetching = false
+            switch completion {
+            case .failure:
+                self.errorMessages.send("Unable to grab comments, try again")
+            default:
+                break
+            }
         } receiveValue: { comments in
             if replacing {
                 self.comments = comments
